@@ -1,0 +1,731 @@
+{
+  "deviceTypes": [
+    {
+      "name": "Phone",
+      "serviceOptions": [
+        "Screen Repair",
+        "Battery Replacement",
+        "Charging Port Replacement",
+        "Camera Glass Repair",
+        "Back Glass Repair",
+        "Water Damage Repair",
+        "Diagnostic"
+      ],
+      "defaultServices": [
+        { "name": "Diagnostic", "price": 45 },
+        { "name": "Water Damage Repair", "priceLabel": "$150+" }
+      ],
+      "makes": [
+        {
+          "name": "Apple",
+          "models": [
+            {
+              "name": "iPhone",
+              "subModels": [
+                {
+                  "name": "6",
+                  "services": [
+                    { "name": "Screen Repair", "price": 75 },
+                    { "name": "Battery Replacement", "price": 75 },
+                    { "name": "Charging Port Replacement", "price": 75 }
+                  ]
+                },
+                {
+                  "name": "6 Plus",
+                  "services": [
+                    { "name": "Screen Repair", "price": 75 },
+                    { "name": "Battery Replacement", "price": 75 },
+                    { "name": "Charging Port Replacement", "price": 75 }
+                  ]
+                },
+                {
+                  "name": "6s",
+                  "services": [
+                    { "name": "Screen Repair", "price": 75 },
+                    { "name": "Battery Replacement", "price": 75 },
+                    { "name": "Charging Port Replacement", "price": 75 }
+                  ]
+                },
+                {
+                  "name": "6s Plus",
+                  "services": [
+                    { "name": "Screen Repair", "price": 75 },
+                    { "name": "Battery Replacement", "price": 75 },
+                    { "name": "Charging Port Replacement", "price": 75 }
+                  ]
+                },
+                {
+                  "name": "7",
+                  "services": [
+                    { "name": "Screen Repair", "price": 85 },
+                    { "name": "Battery Replacement", "price": 85 },
+                    { "name": "Charging Port Replacement", "price": 85 }
+                  ]
+                },
+                {
+                  "name": "7 Plus",
+                  "services": [
+                    { "name": "Screen Repair", "price": 85 },
+                    { "name": "Battery Replacement", "price": 85 },
+                    { "name": "Charging Port Replacement", "price": 85 }
+                  ]
+                },
+                {
+                  "name": "8",
+                  "services": [
+                    { "name": "Screen Repair", "price": 95 },
+                    { "name": "Battery Replacement", "price": 95 },
+                    { "name": "Charging Port Replacement", "price": 95 }
+                  ]
+                },
+                {
+                  "name": "8 Plus",
+                  "services": [
+                    { "name": "Screen Repair", "price": 100 },
+                    { "name": "Battery Replacement", "price": 100 },
+                    { "name": "Charging Port Replacement", "price": 100 }
+                  ]
+                },
+                {
+                  "name": "X",
+                  "services": [
+                    { "name": "Screen Repair", "price": 135 },
+                    { "name": "Battery Replacement", "price": 125 },
+                    { "name": "Charging Port Replacement", "price": 125 }
+                  ]
+                },
+                {
+                  "name": "Xs",
+                  "services": [
+                    { "name": "Screen Repair", "price": 135 },
+                    { "name": "Battery Replacement", "price": 125 },
+                    { "name": "Charging Port Replacement", "price": 125 }
+                  ]
+                },
+                {
+                  "name": "Xs Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 145 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 145 }
+                  ]
+                },
+                {
+                  "name": "XR",
+                  "services": [
+                    { "name": "Screen Repair", "price": 100 },
+                    { "name": "Battery Replacement", "price": 110 },
+                    { "name": "Charging Port Replacement", "price": 110 },
+                    { "name": "Camera Glass Repair", "price": 130 },
+                    { "name": "Back Glass Repair", "price": 130 }
+                  ]
+                },
+                {
+                  "name": "SE 2020/2022",
+                  "services": [
+                    { "name": "Screen Repair", "price": 90 },
+                    { "name": "Battery Replacement", "price": 90 },
+                    { "name": "Charging Port Replacement", "price": 90 },
+                    { "name": "Camera Glass Repair", "price": 110 },
+                    { "name": "Back Glass Repair", "price": 120 }
+                  ]
+                },
+                {
+                  "name": "11",
+                  "services": [
+                    { "name": "Screen Repair", "price": 100 },
+                    { "name": "Battery Replacement", "price": 110 },
+                    { "name": "Charging Port Replacement", "price": 110 },
+                    { "name": "Camera Glass Repair", "price": 130 },
+                    { "name": "Back Glass Repair", "price": 130 }
+                  ]
+                },
+                {
+                  "name": "11 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 135 },
+                    { "name": "Battery Replacement", "price": 135 },
+                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Camera Glass Repair", "price": 170 },
+                    { "name": "Back Glass Repair", "price": 170 }
+                  ]
+                },
+                {
+                  "name": "11 Pro Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 145 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Camera Glass Repair", "price": 170 },
+                    { "name": "Back Glass Repair", "price": 170 }
+                  ]
+                },
+                {
+                  "name": "12 Mini",
+                  "services": [
+                    { "name": "Screen Repair", "price": 135 },
+                    { "name": "Battery Replacement", "price": 135 },
+                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Camera Glass Repair", "price": 130 },
+                    { "name": "Back Glass Repair", "price": 130 }
+                  ]
+                },
+                {
+                  "name": "12",
+                  "services": [
+                    { "name": "Screen Repair", "price": 135 },
+                    { "name": "Battery Replacement", "price": 135 },
+                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "12 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 135 },
+                    { "name": "Battery Replacement", "price": 135 },
+                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "12 Pro Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 150 },
+                    { "name": "Battery Replacement", "price": 150 },
+                    { "name": "Charging Port Replacement", "price": 150 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "13 Mini",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "13",
+                  "services": [
+                    { "name": "Screen Repair", "price": 150 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "13 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 195 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "13 Pro Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 170 },
+                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "14",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Camera Glass Repair", "price": 180 },
+                    { "name": "Back Glass Repair", "price": 180 }
+                  ]
+                },
+                {
+                  "name": "14 Plus",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Camera Glass Repair", "price": 180 },
+                    { "name": "Back Glass Repair", "price": 180 }
+                  ]
+                },
+                {
+                  "name": "14 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 140 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "14 Pro Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 210 },
+                    { "name": "Charging Port Replacement", "price": 210 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "15",
+                  "services": [
+                    { "name": "Screen Repair", "price": 190 },
+                    { "name": "Battery Replacement", "price": 145 },
+                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "15 Plus",
+                  "services": [
+                    { "name": "Screen Repair", "price": 190 },
+                    { "name": "Battery Replacement", "price": 170 },
+                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "15 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 190 },
+                    { "name": "Battery Replacement", "price": 170 },
+                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "15 Pro Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 190 },
+                    { "name": "Battery Replacement", "price": 170 },
+                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "16e",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 },
+                    { "name": "Battery Replacement", "price": 170 },
+                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "16",
+                  "services": [
+                    { "name": "Screen Repair", "price": 190 },
+                    { "name": "Battery Replacement", "price": 170 },
+                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Camera Glass Repair", "price": 190 },
+                    { "name": "Back Glass Repair", "price": 190 }
+                  ]
+                },
+                {
+                  "name": "16 Plus",
+                  "services": [
+                    { "name": "Screen Repair", "price": 200 },
+                    { "name": "Battery Replacement", "price": 210 },
+                    { "name": "Charging Port Replacement", "price": 210 },
+                    { "name": "Camera Glass Repair", "price": 210 },
+                    { "name": "Back Glass Repair", "price": 210 }
+                  ]
+                },
+                {
+                  "name": "16 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 200 },
+                    { "name": "Battery Replacement", "price": 190 },
+                    { "name": "Charging Port Replacement", "price": 190 },
+                    { "name": "Camera Glass Repair", "price": 260 },
+                    { "name": "Back Glass Repair", "price": 260 }
+                  ]
+                },
+                {
+                  "name": "16 Pro Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 300 },
+                    { "name": "Battery Replacement", "price": 210 },
+                    { "name": "Charging Port Replacement", "price": 210 },
+                    { "name": "Camera Glass Repair", "price": 260 },
+                    { "name": "Back Glass Repair", "price": 260 }
+                  ]
+                },
+                {
+                  "name": "Air",
+                  "services": [
+                    { "name": "Screen Repair", "price": 400 }
+                  ]
+                },
+                {
+                  "name": "17",
+                  "services": [
+                    { "name": "Screen Repair", "price": 250 }
+                  ]
+                },
+                {
+                  "name": "17e",
+                  "services": [
+                    { "name": "Screen Repair", "price": 160 }
+                  ]
+                },
+                {
+                  "name": "17 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 250 }
+                  ]
+                },
+                {
+                  "name": "17 Pro Max",
+                  "services": [
+                    { "name": "Screen Repair", "price": 300 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Samsung",
+          "models": [
+            {
+              "name": "Galaxy",
+              "subModels": [
+                {
+                  "name": "S24 Ultra",
+                  "services": [
+                    { "name": "Screen Repair", "price": 329 },
+                    { "name": "Battery Replacement", "price": 129 },
+                    { "name": "Charging Port Replacement", "price": 149 },
+                    { "name": "Diagnostic", "price": 45 }
+                  ]
+                },
+                {
+                  "name": "S23",
+                  "services": [
+                    { "name": "Screen Repair", "price": 239 },
+                    { "name": "Battery Replacement", "price": 109 },
+                    { "name": "Charging Port Replacement", "price": 129 },
+                    { "name": "Diagnostic", "price": 45 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Google",
+          "models": [
+            {
+              "name": "Pixel",
+              "subModels": [
+                {
+                  "name": "9 Pro",
+                  "services": [
+                    { "name": "Screen Repair", "price": 289 },
+                    { "name": "Battery Replacement", "price": 119 },
+                    { "name": "Charging Port Replacement", "price": 139 },
+                    { "name": "Diagnostic", "price": 45 }
+                  ]
+                },
+                {
+                  "name": "8",
+                  "services": [
+                    { "name": "Screen Repair", "price": 209 },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 119 },
+                    { "name": "Diagnostic", "price": 45 }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tablet",
+      "serviceOptions": [
+        "Screen Repair",
+        "Battery Replacement",
+        "Charging Port Replacement",
+        "Camera Glass Repair",
+        "Back Glass Repair",
+        "Water Damage Repair",
+        "Diagnostic"
+      ],
+      "defaultServices": [
+        { "name": "Diagnostic", "price": 45 },
+        { "name": "Water Damage Repair", "priceLabel": "$150+" }
+      ],
+      "makes": [
+        {
+          "name": "Apple",
+          "models": [
+            {
+              "name": "iPad",
+              "subModels": [
+                {
+                  "name": "7/8/9",
+                  "services": [
+                    { "name": "Screen Repair", "price": 130 },
+                    { "name": "Battery Replacement", "price": 130 },
+                    { "name": "Charging Port Replacement", "price": 130 }
+                  ]
+                },
+                {
+                  "name": "10/11",
+                  "services": [
+                    { "name": "Screen Repair", "price": 140 },
+                    { "name": "Battery Replacement", "price": 140 },
+                    { "name": "Charging Port Replacement", "price": 140 }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gaming",
+      "serviceOptions": [
+        "HDMI Port Replacement",
+        "Power Issue Repair",
+        "Cleaning",
+        "Disc Drive Repair",
+        "Hard Drive Replacement",
+        "Fan Replacement",
+        "Screen Repair",
+        "Charge Port Replacement",
+        "Game Card Reader Repair",
+        "Diagnostic"
+      ],
+      "defaultServices": [
+        { "name": "Diagnostic", "price": 45 }
+      ],
+      "makes": [
+        {
+          "name": "Microsoft",
+          "models": [
+            {
+              "name": "Xbox",
+              "subModels": [
+                {
+                  "name": "Series X",
+                  "services": [
+                    { "name": "HDMI Port Replacement", "price": 179 },
+                    { "name": "Power Issue Repair", "price": 149 },
+                    { "name": "Cleaning", "price": 119 },
+                    { "name": "Disc Drive Repair", "price": 149 },
+                    { "name": "Fan Replacement", "price": 119 }
+                  ]
+                },
+                {
+                  "name": "Series S",
+                  "services": [
+                    { "name": "HDMI Port Replacement", "price": 169 },
+                    { "name": "Power Issue Repair", "price": 139 },
+                    { "name": "Cleaning", "price": 109 }
+                  ]
+                },
+                {
+                  "name": "One",
+                  "services": [
+                    { "name": "HDMI Port Replacement", "price": 149 },
+                    { "name": "Power Issue Repair", "price": 119 },
+                    { "name": "Cleaning", "price": 99 },
+                    { "name": "Disc Drive Repair", "price": 119 },
+                    { "name": "Hard Drive Replacement", "price": 139 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sony",
+          "models": [
+            {
+              "name": "PlayStation",
+              "subModels": [
+                {
+                  "name": "PS5",
+                  "services": [
+                    { "name": "HDMI Port Replacement", "price": 189 },
+                    { "name": "Power Issue Repair", "price": 149 },
+                    { "name": "Cleaning", "price": 119 },
+                    { "name": "Disc Drive Repair", "price": 159 },
+                    { "name": "Fan Replacement", "price": 119 }
+                  ]
+                },
+                {
+                  "name": "PS4",
+                  "services": [
+                    { "name": "HDMI Port Replacement", "price": 149 },
+                    { "name": "Power Issue Repair", "price": 119 },
+                    { "name": "Cleaning", "price": 89 },
+                    { "name": "Disc Drive Repair", "price": 109 },
+                    { "name": "Hard Drive Replacement", "price": 129 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Nintendo",
+          "models": [
+            {
+              "name": "Switch",
+              "serviceOptions": [
+                "Power Issue Repair",
+                "Screen Repair",
+                "Charge Port Replacement",
+                "Game Card Reader Repair",
+                "Fan Replacement",
+                "Diagnostic"
+              ],
+              "subModels": [
+                {
+                  "name": "Switch",
+                  "services": [
+                    { "name": "Power Issue Repair", "price": 90 },
+                    { "name": "Screen Repair", "price": 149 },
+                    { "name": "Charge Port Replacement", "price": 90 },
+                    { "name": "Game Card Reader Repair", "price": 60 },
+                    { "name": "Fan Replacement", "price": 45 }
+                  ]
+                },
+                {
+                  "name": "OLED",
+                  "services": [
+                    { "name": "Power Issue Repair", "price": 90 },
+                    { "name": "Screen Repair", "price": 159 },
+                    { "name": "Charge Port Replacement", "price": 90 },
+                    { "name": "Game Card Reader Repair", "price": 60 },
+                    { "name": "Fan Replacement", "price": 45 }
+                  ]
+                },
+                {
+                  "name": "Lite",
+                  "services": [
+                    { "name": "Power Issue Repair", "price": 90 },
+                    { "name": "Screen Repair", "price": 139 },
+                    { "name": "Charge Port Replacement", "price": 90 },
+                    { "name": "Game Card Reader Repair", "price": 60 },
+                    { "name": "Fan Replacement", "price": 45 }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Controllers",
+      "serviceOptions": [
+        "Stick Repair"
+      ],
+      "makes": [
+        {
+          "name": "Xbox/Playstation",
+          "services": [
+            { "name": "Stick Repair", "price": 40 }
+          ]
+        },
+        {
+          "name": "Series 1/Series 2",
+          "services": [
+            { "name": "Stick Repair", "price": 45 }
+          ]
+        },
+        {
+          "name": "Switch/Joy-Con",
+          "services": [
+            { "name": "Stick Repair", "price": 30 }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Computer",
+      "serviceOptions": [
+        "Diagnostic",
+        "Battery Replacement",
+        "Screen Replacement",
+        "Water Damage Repair",
+        "Laptop Charging Port Labor",
+        "Hard Drive Replacement",
+        "Hardware Install",
+        "OS Install / Cleanup",
+        "Data Recovery"
+      ],
+      "defaultServices": [
+        { "name": "Diagnostic", "price": 100 },
+        { "name": "Water Damage Repair", "priceLabel": "$150+" },
+        { "name": "Laptop Charging Port Labor", "priceLabel": "$150+" },
+        { "name": "Hard Drive Replacement", "priceLabel": "$150+" }
+      ],
+      "makes": [
+        {
+          "name": "Apple",
+          "models": [
+            {
+              "name": "Laptop",
+              "services": [
+                { "name": "Battery Replacement", "priceLabel": "Call for pricing" },
+                { "name": "Screen Replacement", "priceLabel": "$300+" }
+              ]
+            },
+            {
+              "name": "Desktop",
+              "services": [
+                { "name": "Screen Replacement", "priceLabel": "$300+" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Windows",
+          "models": [
+            {
+              "name": "Laptop",
+              "services": [
+                { "name": "Battery Replacement", "priceLabel": "Call for pricing" }
+              ]
+            },
+            {
+              "name": "Desktop",
+              "services": [
+                { "name": "Hardware Install", "price": 79 },
+                { "name": "OS Install / Cleanup", "price": 99 },
+                { "name": "Data Recovery", "price": 129 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
