@@ -4,10 +4,10 @@
 
 - Static marketing site for Repair Node with these main pages:
   - `index.html`
-  - `pricing.html`
-  - `about.html`
-  - `blog.html`
-  - `contact.html`
+  - `pricing-2/index.html` for `/pricing-2/`
+  - `about/index.html` for `/about/`
+  - `blog-2/index.html` for `/blog-2/`
+  - `contact/index.html` for `/contact/`
 - Shared styles are in `css/main.css`
 - Shared nav/mobile behavior is in `js/main.js`
 - Pricing estimator uses `js/pricing.js` + `data/pricing-catalog.json`
@@ -45,12 +45,13 @@
 - Keep Plausible analytics script in place for later completion
 - Contact page heading was simplified to `Contact`
 - Blog is currently a structured landing page, not a set of real posts yet
+- Static pages use folder-based `index.html` files so the public URLs match the existing WordPress-style paths without `.html`.
 
 ## Things To Watch
 
 - The hero grain/vintage effect was increased because the first version felt too subtle; user may still want further visual tuning
 - Contact form currently shows `repairnode@gmail.com` in visible contact info
-- Web3Forms access key is present in `contact.html`
+- Web3Forms access key is present in `contact/index.html`
 - The site has not been fully device-tested in a browser emulator during this session; mobile work was based on CSS review/polish
 
 ## Best Next Steps

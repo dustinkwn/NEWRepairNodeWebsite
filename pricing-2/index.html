@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Repair pricing for phones, tablets, computers, game consoles, and diagnostics in Grand Rapids, MI. Browse common repair estimates from Repair Node.">
+
+  <title>Repair Pricing in Grand Rapids | Phone, Computer & Console Repair | Repair Node</title>
+  <link rel="canonical" href="https://repairnode.com/pricing-2/">
+  <meta property="og:title" content="Repair Pricing in Grand Rapids | Phone, Computer & Console Repair | Repair Node">
+  <meta property="og:description" content="Repair pricing for phones, tablets, computers, game consoles, and diagnostics in Grand Rapids, MI. Browse common repair estimates from Repair Node.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://repairnode.com/pricing-2/">
+  <meta property="og:image" content="https://repairnode.com/images/logo.png">
+  <meta property="og:site_name" content="Repair Node">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Repair Pricing in Grand Rapids | Phone, Computer & Console Repair | Repair Node">
+  <meta name="twitter:description" content="Repair pricing for phones, tablets, computers, game consoles, and diagnostics in Grand Rapids, MI. Browse common repair estimates from Repair Node.">
+  <meta name="twitter:image" content="https://repairnode.com/images/logo.png">
+
+  <!-- Plausible -->
+  <script defer data-domain="repairnode.com" src="https://plausible.io/js/script.js"></script>
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ElectronicsRepair",
+  "name": "Repair Node",
+  "url": "https://repairnode.com/pricing-2/",
+  "image": "https://repairnode.com/images/logo.png",
+  "telephone": "+16166063304",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "5260 Northland Drive NE Suite F",
+    "addressLocality": "Grand Rapids",
+    "addressRegion": "MI",
+    "postalCode": "49525",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "10:30:00",
+      "closes": "18:00:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "10:30:00",
+      "closes": "13:00:00"
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="header-left">
+    <a href="/"><img src="../images/logo.png" alt="Repair Node Logo" class="logo"></a>
+  </div>
+
+  <!-- Hamburger button (mobile/tablet only) -->
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="main-nav" id="main-nav">
+    <a href="/">Home</a>
+    <a href="/pricing-2/">Pricing</a>
+    <a href="/about/">About</a>
+    <a href="/blog-2/">Blog</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+
+  <div class="header-right">
+    <a href="tel:+16166063304" class="call-cta" onclick="plausible('CallClick')">Call Now</a>
+  </div>
+</header>
+
+<!-- ================= PAGE BANNER ================= -->
+<section class="page-banner">
+  <div class="page-banner-content">
+    <h1>Repair Pricing</h1>
+    <p>Estimate common repair costs for phones, tablets, computers, and game consoles.</p>
+  </div>
+</section>
+
+<!-- ================= CONFIGURATOR ================= -->
+<section class="pricing-grid">
+  <div class="pricing-card pricing-card-wide">
+    <div class="pricing-card-copy">
+      <h2>Find Your Estimate</h2>
+      <p class="pricing-lead">Complete each box to find your estimate.</p>
+    </div>
+
+    <form id="pricing-form" class="pricing-form">
+      <label class="field-group" for="device-type">
+        <span id="device-type-label">1. Device Type</span>
+        <select id="device-type" name="device-type">
+          <option value="">Select Device Type</option>
+        </select>
+      </label>
+
+      <label class="field-group" for="device-make">
+        <span id="device-make-label">2. Make</span>
+        <select id="device-make" name="device-make" disabled>
+          <option value="">Select Make</option>
+        </select>
+      </label>
+
+      <label class="field-group" for="device-model">
+        <span id="device-model-label">3. Model</span>
+        <select id="device-model" name="device-model" disabled>
+          <option value="">Select Model</option>
+        </select>
+      </label>
+
+      <label class="field-group" for="device-submodel">
+        <span id="device-submodel-label">4. Sub-Model</span>
+        <select id="device-submodel" name="device-submodel" disabled>
+          <option value="">Select Sub-Model</option>
+        </select>
+      </label>
+
+      <label class="field-group" for="device-service">
+        <span id="device-service-label">5. Service</span>
+        <select id="device-service" name="device-service" disabled>
+          <option value="">Select Service</option>
+        </select>
+      </label>
+
+      <div class="selection-path-wrap">
+        <p class="selection-path-label">Selected Path</p>
+        <p id="selection-path" class="selection-path">Choose a device path to see your estimate.</p>
+      </div>
+
+      <div class="pricing-actions">
+        <p class="pricing-action-note">Click here after completing all boxes.</p>
+        <button id="device-estimate" type="submit" class="btn-disabled" disabled>Get Estimate</button>
+        <a href="/contact/#schedule-repair" class="btn-secondary">Schedule Repair</a>
+      </div>
+    </form>
+
+    <div id="estimate-result" class="estimate-result"></div>
+  </div>
+
+  <div class="pricing-card static pricing-card-sidebar">
+    <h2>Need Something Custom?</h2>
+    <p>We also handle board repair, liquid damage work, data recovery, and custom diagnostics.</p>
+    <p><strong>Phone, tablet, and gaming diagnostics are $45</strong></p>
+    <p><strong>For laptop and desktop computers, we charge $100 diagnostic fee.</strong></p>
+    <p><strong>Advanced work starts at $150+</strong></p>
+    <a href="/contact/" class="btn-secondary">Contact the Shop</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2228.1641088832553!2d-85.5793296!3d43.057985599999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8818552ce7cad06b%3A0xb2f5face08d260aa!2sREPAIR%20NODE!5e1!3m2!1sen!2sus!4v1769824082586!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="footer-right">
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="/pricing-2/">Pricing</a>
+        <a href="/about/">About</a>
+        <a href="/blog-2/">Blog</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+
+      <div class="business-info">
+        <p><strong>Repair Node</strong></p>
+        <p>5260 Northland Drive NE Suite F<br>Grand Rapids, MI 49525</p>
+        <p><a href="tel:+16166063304">+1 (616) 606-3304</a></p>
+        <p class="hours">
+          Mon-Fri: 10:30am-6pm<br>
+          Sat: 10:30am-1pm<br>
+          Sun: Closed
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/pricing.js"></script>
+</body>
+</html>

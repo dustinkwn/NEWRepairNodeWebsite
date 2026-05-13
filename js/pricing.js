@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  const catalogUrl = "/data/pricing-catalog.json";
+  const catalogUrl = new URL("../data/pricing-catalog.json", document.currentScript.src).href;
 
   const form = document.getElementById("pricing-form");
   const typeSelect = document.getElementById("device-type");

@@ -200,7 +200,7 @@ body.show-socials .social-links {
       rgba(32, 22, 14, 0.38),
       rgba(18, 14, 11, 0.42)
     ),
-    url("/images/hero.jpg") center / cover no-repeat;
+    url("../images/hero.jpg") center / cover no-repeat;
 }
 
 .hero::before {
@@ -1036,7 +1036,7 @@ select {
   height: 280px;
   background:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url("/images/contact-header.svg") center / cover no-repeat;
+    url("../images/contact-header.svg") center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
