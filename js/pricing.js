@@ -38,7 +38,7 @@
     items.forEach((item) => {
       const option = document.createElement("option");
       option.value = item.name;
-      option.textContent = getOptionLabel(item);
+      option.textContent = item.name;
       select.appendChild(option);
     });
 
@@ -48,14 +48,6 @@
 
   function resetSelect(select, placeholder) {
     setOptions(select, [], placeholder);
-  }
-
-  function getOptionLabel(item) {
-    if (item?.priceLabel || typeof item?.price === "number") {
-      return `${item.name} - ${formatPrice(item)}`;
-    }
-
-    return item.name;
   }
 
   function formatPrice(service) {
