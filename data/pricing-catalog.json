@@ -466,10 +466,9 @@
       "name": "Tablet",
       "serviceOptions": [
         "Screen Repair",
+        "LCD Replacement",
         "Battery Replacement",
         "Charging Port Replacement",
-        "Camera Glass Repair",
-        "Back Glass Repair",
         "Water Damage Repair",
         "Diagnostic"
       ],
@@ -488,6 +487,7 @@
                   "name": "7/8/9",
                   "services": [
                     { "name": "Screen Repair", "price": 130 },
+                    { "name": "LCD Replacement", "price": 180 },
                     { "name": "Battery Replacement", "price": 130 },
                     { "name": "Charging Port Replacement", "price": 130 }
                   ]
@@ -496,6 +496,7 @@
                   "name": "10/11",
                   "services": [
                     { "name": "Screen Repair", "price": 140 },
+                    { "name": "LCD Replacement", "price": 230 },
                     { "name": "Battery Replacement", "price": 140 },
                     { "name": "Charging Port Replacement", "price": 140 }
                   ]
@@ -515,9 +516,6 @@
         "Disc Drive Repair",
         "Hard Drive Replacement",
         "Fan Replacement",
-        "Screen Repair",
-        "Charge Port Replacement",
-        "Game Card Reader Repair",
         "Diagnostic"
       ],
       "defaultServices": [
@@ -533,27 +531,28 @@
                 {
                   "name": "Series X",
                   "services": [
-                    { "name": "HDMI Port Replacement", "price": 179 },
+                    { "name": "HDMI Port Replacement", "price": 100 },
                     { "name": "Power Issue Repair", "price": 149 },
-                    { "name": "Cleaning", "price": 119 },
+                    { "name": "Cleaning", "price": 80 },
                     { "name": "Disc Drive Repair", "price": 149 },
-                    { "name": "Fan Replacement", "price": 119 }
+                    { "name": "Fan Replacement", "price": 130 }
                   ]
                 },
                 {
                   "name": "Series S",
                   "services": [
-                    { "name": "HDMI Port Replacement", "price": 169 },
+                    { "name": "HDMI Port Replacement", "price": 100 },
                     { "name": "Power Issue Repair", "price": 139 },
-                    { "name": "Cleaning", "price": 109 }
+                    { "name": "Cleaning", "price": 80 },
+                    { "name": "Fan Replacement", "price": 130 }
                   ]
                 },
                 {
                   "name": "One",
                   "services": [
-                    { "name": "HDMI Port Replacement", "price": 149 },
+                    { "name": "HDMI Port Replacement", "price": 100 },
                     { "name": "Power Issue Repair", "price": 119 },
-                    { "name": "Cleaning", "price": 99 },
+                    { "name": "Cleaning", "price": 80 },
                     { "name": "Disc Drive Repair", "price": 119 },
                     { "name": "Hard Drive Replacement", "price": 139 }
                   ]
@@ -571,19 +570,19 @@
                 {
                   "name": "PS5",
                   "services": [
-                    { "name": "HDMI Port Replacement", "price": 189 },
+                    { "name": "HDMI Port Replacement", "price": 100 },
                     { "name": "Power Issue Repair", "price": 149 },
-                    { "name": "Cleaning", "price": 119 },
+                    { "name": "Cleaning", "price": 80 },
                     { "name": "Disc Drive Repair", "price": 159 },
-                    { "name": "Fan Replacement", "price": 119 }
+                    { "name": "Fan Replacement", "price": 130 }
                   ]
                 },
                 {
                   "name": "PS4",
                   "services": [
-                    { "name": "HDMI Port Replacement", "price": 149 },
+                    { "name": "HDMI Port Replacement", "price": 100 },
                     { "name": "Power Issue Repair", "price": 119 },
-                    { "name": "Cleaning", "price": 89 },
+                    { "name": "Cleaning", "price": 80 },
                     { "name": "Disc Drive Repair", "price": 109 },
                     { "name": "Hard Drive Replacement", "price": 129 }
                   ]
@@ -620,7 +619,7 @@
                   "name": "OLED",
                   "services": [
                     { "name": "Power Issue Repair", "price": 90 },
-                    { "name": "Screen Repair", "price": 159 },
+                    { "name": "Screen Repair", "price": 210 },
                     { "name": "Charge Port Replacement", "price": 90 },
                     { "name": "Game Card Reader Repair", "price": 60 },
                     { "name": "Fan Replacement", "price": 45 }
@@ -673,9 +672,10 @@
       "serviceOptions": [
         "Diagnostic",
         "Battery Replacement",
-        "Screen Replacement",
+        "Laptop Screen Labor",
         "Water Damage Repair",
-        "Laptop Charging Port Labor",
+        "Laptop Charging Port Labor - Soldered",
+        "Laptop Charging Port Labor - Plug and Play",
         "Hard Drive Replacement",
         "Hardware Install",
         "OS Install / Cleanup",
@@ -684,24 +684,46 @@
       "defaultServices": [
         { "name": "Diagnostic", "price": 100 },
         { "name": "Water Damage Repair", "priceLabel": "$150+" },
-        { "name": "Laptop Charging Port Labor", "priceLabel": "$150+" },
+        { "name": "Laptop Screen Labor", "priceLabel": "$150+" },
+        { "name": "Laptop Charging Port Labor - Soldered", "priceLabel": "$200+" },
+        { "name": "Laptop Charging Port Labor - Plug and Play", "priceLabel": "$150+" },
         { "name": "Hard Drive Replacement", "priceLabel": "$150+" }
       ],
       "makes": [
         {
           "name": "Apple",
+          "defaultServices": [
+            { "name": "Apple Computer Labor", "price": 210 }
+          ],
           "models": [
             {
               "name": "Laptop",
+              "serviceOptions": [
+                "Diagnostic",
+                "Battery Replacement",
+                "Laptop Screen Labor",
+                "Water Damage Repair",
+                "Laptop Charging Port Labor - Soldered",
+                "Laptop Charging Port Labor - Plug and Play",
+                "Hard Drive Replacement",
+                "Apple Computer Labor"
+              ],
               "services": [
                 { "name": "Battery Replacement", "priceLabel": "Call for pricing" },
-                { "name": "Screen Replacement", "priceLabel": "$300+" }
+                { "name": "Laptop Screen Labor", "priceLabel": "$150+" },
+                { "name": "Apple Computer Labor", "price": 210 }
               ]
             },
             {
               "name": "Desktop",
+              "serviceOptions": [
+                "Diagnostic",
+                "Water Damage Repair",
+                "Hard Drive Replacement",
+                "Apple Computer Labor"
+              ],
               "services": [
-                { "name": "Screen Replacement", "priceLabel": "$300+" }
+                { "name": "Apple Computer Labor", "price": 210 }
               ]
             }
           ]
@@ -711,12 +733,29 @@
           "models": [
             {
               "name": "Laptop",
+              "serviceOptions": [
+                "Diagnostic",
+                "Battery Replacement",
+                "Laptop Screen Labor",
+                "Water Damage Repair",
+                "Laptop Charging Port Labor - Soldered",
+                "Laptop Charging Port Labor - Plug and Play",
+                "Hard Drive Replacement"
+              ],
               "services": [
                 { "name": "Battery Replacement", "priceLabel": "Call for pricing" }
               ]
             },
             {
               "name": "Desktop",
+              "serviceOptions": [
+                "Diagnostic",
+                "Water Damage Repair",
+                "Hard Drive Replacement",
+                "Hardware Install",
+                "OS Install / Cleanup",
+                "Data Recovery"
+              ],
               "services": [
                 { "name": "Hardware Install", "price": 79 },
                 { "name": "OS Install / Cleanup", "price": 99 },
