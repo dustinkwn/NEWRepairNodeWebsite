@@ -672,7 +672,7 @@
       "serviceOptions": [
         "Diagnostic",
         "Battery Replacement",
-        "Laptop Screen Labor",
+        "Screen Replacement",
         "Water Damage Repair",
         "Charging Port",
         "Hard Drive Replacement",
@@ -683,7 +683,7 @@
       "defaultServices": [
         { "name": "Diagnostic", "price": 100 },
         { "name": "Water Damage Repair", "priceLabel": "$150+" },
-        { "name": "Laptop Screen Labor", "priceLabel": "$150+" },
+        { "name": "Screen Replacement", "priceLabel": "$150+" },
         { "name": "Charging Port", "priceLabel": "$150+" },
         { "name": "Hard Drive Replacement", "priceLabel": "$150+" }
       ],
@@ -699,14 +699,14 @@
               "serviceOptions": [
                 "Diagnostic",
                 "Battery Replacement",
-                "Laptop Screen Labor",
+                "Screen Replacement",
                 "Water Damage Repair",
                 "Charging Port",
                 "Apple Computer Labor"
               ],
               "services": [
                 { "name": "Battery Replacement", "priceLabel": "Call for pricing" },
-                { "name": "Laptop Screen Labor", "priceLabel": "$300+" },
+                { "name": "Screen Replacement", "priceLabel": "$300+" },
                 { "name": "Water Damage Repair", "priceLabel": "$210+" },
                 { "name": "Apple Computer Labor", "price": 210 }
               ]
@@ -732,7 +732,7 @@
               "serviceOptions": [
                 "Diagnostic",
                 "Battery Replacement",
-                "Laptop Screen Labor",
+                "Screen Replacement",
                 "Water Damage Repair",
                 "Charging Port",
                 "Hard Drive Replacement"
