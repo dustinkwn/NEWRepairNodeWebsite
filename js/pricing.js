@@ -83,11 +83,11 @@
   }
 
   function getSelectedModel() {
-    return getSelectedMake()?.models.find((item) => item.name === modelSelect.value);
+    return getSelectedMake()?.models?.find((item) => item.name === modelSelect.value);
   }
 
   function getSelectedSubModel() {
-    return getSelectedModel()?.subModels.find((item) => item.name === subModelSelect.value);
+    return getSelectedModel()?.subModels?.find((item) => item.name === subModelSelect.value);
   }
 
   function getServiceSource() {
