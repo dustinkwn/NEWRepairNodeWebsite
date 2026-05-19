@@ -118,11 +118,12 @@
     <form class="contact-form" id="contact-form">
       <input type="hidden" name="access_key" value="b8d2a199-78da-4c6b-9cae-2ab69df18e78">
       <input type="hidden" name="subject" value="New Repair Request - Repair Node">
-      <input type="checkbox" name="botcheck" style="display:none">
+      <input type="hidden" name="form_started_at" id="form-started-at">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
       <label class="field-group" for="contact-name">
         <span>Name</span>
-        <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your name">
+        <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
       </label>
 
       <label class="field-group" for="contact-phone">
@@ -208,6 +209,7 @@
       </div>
 
       <div class="contact-form-actions">
+        <div class="h-captcha" data-captcha="true"></div>
         <button type="submit" class="btn-primary" id="submit-btn">Send Request</button>
       </div>
 
@@ -246,6 +248,7 @@
 </footer>
 
 <script src="../js/main.js"></script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="../js/contact.js"></script>
 
 </body>

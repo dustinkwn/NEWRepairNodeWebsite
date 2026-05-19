@@ -1028,6 +1028,10 @@ select {
   flex-wrap: wrap;
 }
 
+.contact-form-actions .h-captcha {
+  width: 100%;
+}
+
 /* =====================
    PAGE BANNER (inner pages)
 ===================== */
