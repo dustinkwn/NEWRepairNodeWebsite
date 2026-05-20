@@ -185,6 +185,78 @@ body.show-socials .social-links {
   width: auto;
   height: 35px;
 }
+
+.holiday-hours-widget {
+  position: absolute;
+  right: 2rem;
+  top: 100%;
+  width: min(310px, calc(100vw - 2rem));
+  margin-top: 0.6rem;
+  padding: 0.7rem;
+  color: #111827;
+  background: linear-gradient(
+    180deg,
+    #b91c1c 0 33.333%,
+    #ffffff 33.333% 66.666%,
+    #1d4ed8 66.666% 100%
+  );
+  border: 1px solid rgba(17, 24, 39, 0.16);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-4px);
+  z-index: 20;
+}
+
+.holiday-hours-widget::after {
+  content: "";
+  position: absolute;
+  inset: 0.7rem;
+  background: #ffffff;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  border-radius: calc(var(--radius) - 2px);
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.14);
+}
+
+body.show-socials .holiday-hours-widget {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.holiday-hours-widget p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-inline: 0.65rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.holiday-hours-widget p:first-of-type {
+  padding-top: 0.45rem;
+}
+
+.holiday-hours-widget p:last-of-type {
+  padding-bottom: 0.45rem;
+}
+
+.holiday-hours-title {
+  margin-bottom: 0.2rem !important;
+  color: #b91c1c;
+  font-size: 0.78rem !important;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.holiday-hours-remembrance {
+  margin-top: 0.35rem !important;
+  color: #374151;
+  font-size: 0.82rem !important;
+  font-style: italic;
+}
 /* =====================
    HERO
 ===================== */
@@ -641,6 +713,13 @@ footer {
 
   .social-links {
     left: 1rem;
+  }
+
+  .holiday-hours-widget {
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% + 3rem);
+    width: auto;
   }
 
   .footer-content {
