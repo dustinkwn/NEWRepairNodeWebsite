@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  const catalogUrl = new URL("../data/pricing-catalog.json", document.currentScript.src).href;
+  const catalogUrl = "/data/pricing-catalog.json?v=20260526-4";
 
   const form = document.getElementById("pricing-form");
   const typeSelect = document.getElementById("device-type");
@@ -25,9 +25,9 @@
   const selectionPriceNote = document.getElementById("selection-price-note");
   const pricingActionNote = document.getElementById("pricing-action-note");
   const scheduleRepairLink = document.getElementById("schedule-repair-link");
-  const modelField = modelSelect?.closest(".field-group");
-  const subModelField = subModelSelect?.closest(".field-group");
-  const scheduleRepairHref = scheduleRepairLink?.getAttribute("href") ?? "";
+  const modelField = modelSelect ? modelSelect.closest(".field-group") : null;
+  const subModelField = subModelSelect ? subModelSelect.closest(".field-group") : null;
+  const scheduleRepairHref = scheduleRepairLink ? scheduleRepairLink.getAttribute("href") || "" : "";
 
   let catalog = [];
   let hasStartedEstimate = false;
@@ -62,11 +62,11 @@
   }
 
   function formatPrice(service) {
-    if (service?.priceLabel) {
+    if (service && service.priceLabel) {
       return service.priceLabel;
     }
 
-    if (typeof service?.price !== "number") {
+    if (!service || typeof service.price !== "number") {
       return "Call for pricing";
     }
 
@@ -82,30 +82,33 @@
   }
 
   function getSelectedMake() {
-    return getSelectedType()?.makes.find((item) => item.name === makeSelect.value);
+    const type = getSelectedType();
+    return type ? type.makes.find((item) => item.name === makeSelect.value) : undefined;
   }
 
   function getSelectedModel() {
-    return getSelectedMake()?.models?.find((item) => item.name === modelSelect.value);
+    const make = getSelectedMake();
+    return make && make.models ? make.models.find((item) => item.name === modelSelect.value) : undefined;
   }
 
   function getSelectedSubModel() {
-    return getSelectedModel()?.subModels?.find((item) => item.name === subModelSelect.value);
+    const model = getSelectedModel();
+    return model && model.subModels ? model.subModels.find((item) => item.name === subModelSelect.value) : undefined;
   }
 
   function getServiceSource() {
     const make = getSelectedMake();
     const model = getSelectedModel();
 
-    if (model?.subModels?.length) {
+    if (model && model.subModels && model.subModels.length) {
       return getSelectedSubModel();
     }
 
-    if (model?.services?.length) {
+    if (model && model.services && model.services.length) {
       return model;
     }
 
-    if (make?.services?.length && !make.models?.length) {
+    if (make && make.services && make.services.length && !(make.models && make.models.length)) {
       return make;
     }
 
@@ -113,11 +116,13 @@
   }
 
   function shouldShowModel() {
-    return Boolean(getSelectedMake()?.models?.length);
+    const make = getSelectedMake();
+    return Boolean(make && make.models && make.models.length);
   }
 
   function shouldShowSubModel() {
-    return Boolean(getSelectedModel()?.subModels?.length);
+    const model = getSelectedModel();
+    return Boolean(model && model.subModels && model.subModels.length);
   }
 
   function updateStepLabels() {
@@ -140,7 +145,9 @@
   }
 
   function setModelVisibility(isVisible) {
-    modelField?.classList.toggle("is-hidden", !isVisible);
+    if (modelField) {
+      modelField.classList.toggle("is-hidden", !isVisible);
+    }
     if (!isVisible) {
       modelSelect.value = "";
     }
@@ -148,7 +155,9 @@
   }
 
   function setSubModelVisibility(isVisible) {
-    subModelField?.classList.toggle("is-hidden", !isVisible);
+    if (subModelField) {
+      subModelField.classList.toggle("is-hidden", !isVisible);
+    }
     if (!isVisible) {
       subModelSelect.value = "";
     }
@@ -169,11 +178,11 @@
       return [];
     }
 
-    const configuredNames = serviceSource.serviceOptions?.length
+    const configuredNames = serviceSource.serviceOptions && serviceSource.serviceOptions.length
       ? serviceSource.serviceOptions
-      : model?.serviceOptions?.length
+      : model && model.serviceOptions && model.serviceOptions.length
         ? model.serviceOptions
-        : type.serviceOptions?.length
+        : type.serviceOptions && type.serviceOptions.length
           ? type.serviceOptions
           : serviceSource.services.map((item) => item.name);
 
@@ -185,9 +194,9 @@
       }
 
       const fallbackSources = [
-        model?.defaultServices ?? [],
-        make?.defaultServices ?? [],
-        type.defaultServices ?? []
+        model && model.defaultServices ? model.defaultServices : [],
+        make && make.defaultServices ? make.defaultServices : [],
+        type.defaultServices ? type.defaultServices : []
       ];
 
       for (const services of fallbackSources) {
@@ -251,8 +260,10 @@
       pricingActionNote.textContent = "Select a service to see your estimate.";
     }
 
-    scheduleRepairLink?.classList.remove("btn-primary");
-    scheduleRepairLink?.classList.add("btn-secondary");
+    if (scheduleRepairLink) {
+      scheduleRepairLink.classList.remove("btn-primary");
+      scheduleRepairLink.classList.add("btn-secondary");
+    }
   }
 
   function getSelectedModelName() {
@@ -275,7 +286,7 @@
       parameters.set("model", getSelectedModelName());
     }
 
-    if (selectedService?.name) {
+    if (selectedService && selectedService.name) {
       parameters.set("service", selectedService.name);
     }
 
@@ -296,7 +307,7 @@
       device_type: typeSelect.value,
       device_make: makeSelect.value,
       device_model: getSelectedModelName(),
-      service_name: selectedService?.name || "",
+      service_name: selectedService && selectedService.name ? selectedService.name : "",
       estimate_price: selectedService ? formatPrice(selectedService) : ""
     };
   }
@@ -361,8 +372,10 @@
       pricingActionNote.textContent = "Your estimate is ready. Schedule when you are ready.";
     }
 
-    scheduleRepairLink?.classList.remove("btn-secondary");
-    scheduleRepairLink?.classList.add("btn-primary");
+    if (scheduleRepairLink) {
+      scheduleRepairLink.classList.remove("btn-secondary");
+      scheduleRepairLink.classList.add("btn-primary");
+    }
 
     trackEstimateEvent("estimate_viewed", getEstimateEventParams(selectedService));
 
@@ -370,7 +383,7 @@
       window.plausible("EstimateViewed", {
         props: {
           path: pathPreview.textContent,
-          price: selectedService.priceLabel ?? String(selectedService.price)
+          price: selectedService.priceLabel != null ? selectedService.priceLabel : String(selectedService.price)
         }
       });
     }
@@ -379,7 +392,7 @@
   function onTypeChange() {
     trackEstimateStart();
     const type = getSelectedType();
-    setOptions(makeSelect, type?.makes ?? [], "Select Make");
+    setOptions(makeSelect, type && type.makes ? type.makes : [], "Select Make");
     setModelVisibility(false);
     setSubModelVisibility(false);
     resetSelect(modelSelect, "Select Model");
@@ -391,7 +404,7 @@
 
   function onMakeChange() {
     const make = getSelectedMake();
-    const showModel = Boolean(make?.models?.length);
+    const showModel = Boolean(make && make.models && make.models.length);
 
     setModelVisibility(showModel);
     setSubModelVisibility(false);
@@ -412,7 +425,7 @@
 
   function onModelChange() {
     const model = getSelectedModel();
-    const showSubModel = Boolean(model?.subModels?.length);
+    const showSubModel = Boolean(model && model.subModels && model.subModels.length);
 
     setSubModelVisibility(showSubModel);
 
@@ -450,7 +463,7 @@
       }
 
       const data = await response.json();
-      catalog = data.deviceTypes ?? [];
+      catalog = data.deviceTypes || [];
       setOptions(typeSelect, catalog, "Select Device Type");
     } catch (error) {
       pathPreview.textContent = "We could not load pricing right now. Please call for a quote.";
@@ -458,27 +471,30 @@
     }
   }
 
-  form?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    renderEstimate();
-  });
-
-  typeSelect?.addEventListener("change", onTypeChange);
-  makeSelect?.addEventListener("change", onMakeChange);
-  modelSelect?.addEventListener("change", onModelChange);
-  subModelSelect?.addEventListener("change", onSubModelChange);
-  serviceSelect?.addEventListener("change", onServiceChange);
-  scheduleRepairLink?.addEventListener("click", () => {
-    const selectedService = getSelectedService();
-
-    trackEstimateEvent("schedule_repair_click", {
-      ...getEstimateEventParams(selectedService),
-      location: "pricing_estimate",
-      link_url: scheduleRepairLink.getAttribute("href") || "",
-      link_text: scheduleRepairLink.textContent.trim(),
-      estimate_completed: Boolean(selectedService)
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      renderEstimate();
     });
-  });
+  }
+
+  if (typeSelect) typeSelect.addEventListener("change", onTypeChange);
+  if (makeSelect) makeSelect.addEventListener("change", onMakeChange);
+  if (modelSelect) modelSelect.addEventListener("change", onModelChange);
+  if (subModelSelect) subModelSelect.addEventListener("change", onSubModelChange);
+  if (serviceSelect) serviceSelect.addEventListener("change", onServiceChange);
+  if (scheduleRepairLink) {
+    scheduleRepairLink.addEventListener("click", () => {
+      const selectedService = getSelectedService();
+
+      trackEstimateEvent("schedule_repair_click", Object.assign({}, getEstimateEventParams(selectedService), {
+        location: "pricing_estimate",
+        link_url: scheduleRepairLink.getAttribute("href") || "",
+        link_text: scheduleRepairLink.textContent.trim(),
+        estimate_completed: Boolean(selectedService)
+      }));
+    });
+  }
 
   resetSelect(makeSelect, "Select Make");
   resetSelect(modelSelect, "Select Model");

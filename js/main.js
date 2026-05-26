@@ -41,7 +41,8 @@
   window.trackLeadEvent = trackLeadEvent;
 
   function getLinkText(element) {
-    const imageAlt = element.querySelector("img")?.alt;
+    const image = element.querySelector("img");
+    const imageAlt = image ? image.alt : "";
     return (element.textContent.trim() || imageAlt || element.getAttribute("aria-label") || "Unlabeled link")
       .replace(/\s+/g, " ");
   }
@@ -110,7 +111,10 @@
     const userAgent = navigator.userAgent;
     const isSafari = /Safari/i.test(userAgent) && !/(Chrome|CriOS|FxiOS|EdgiOS|OPiOS|Android)/i.test(userAgent);
     if (isSafari) {
-      mobileEmbed.closest(".featured-work-video")?.classList.add("preview-fallback");
+      const featuredVideo = mobileEmbed.closest(".featured-work-video");
+      if (featuredVideo) {
+        featuredVideo.classList.add("preview-fallback");
+      }
       return;
     }
 
@@ -179,11 +183,13 @@
     }
 
     loadMobileTikTokEmbed();
-    mobileViewport.addEventListener?.("change", (event) => {
-      if (event.matches) {
-        loadMobileTikTokEmbed();
-      }
-    });
+    if (mobileViewport.addEventListener) {
+      mobileViewport.addEventListener("change", (event) => {
+        if (event.matches) {
+          loadMobileTikTokEmbed();
+        }
+      });
+    }
 
     document.addEventListener("click", onLeadLinkClick);
     window.addEventListener("scroll", onScroll, { passive: true });

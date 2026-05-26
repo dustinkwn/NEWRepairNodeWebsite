@@ -179,13 +179,15 @@
     });
   });
 
-  scheduleToggle?.addEventListener("click", () => {
-    if (scheduleToggle.getAttribute("aria-expanded") === "true") {
-      trackLeadEvent("contact_repair_details_open", {
-        ...formEventParams
-      });
-    }
-  });
+  if (scheduleToggle) {
+    scheduleToggle.addEventListener("click", () => {
+      if (scheduleToggle.getAttribute("aria-expanded") === "true") {
+        trackLeadEvent("contact_repair_details_open", {
+          ...formEventParams
+        });
+      }
+    });
+  }
 
   window.onRepairNodeCaptchaLoaded = function () {
     trackLeadEvent("captcha_loaded", {
