@@ -81,7 +81,8 @@
   </nav>
 
   <div class="header-right">
-    <a href="tel:+16166063304" class="call-cta" onclick="plausible('CallClick')">Call Now</a>
+    <a href="tel:+16166063304" class="call-cta" data-location="nav" aria-label="Call Repair Node now" onclick="plausible('CallClick')"><span class="cta-label-desktop">Call Now</span><span class="cta-label-mobile">Call</span></a>
+    <a href="mailto:repairnode@gmail.com" class="email-cta" data-location="nav" aria-label="Email Repair Node now"><span class="cta-label-desktop">Email Now</span><span class="cta-label-mobile">Email</span></a>
   </div>
 </header>
 
@@ -103,9 +104,18 @@
 
     <article class="contact-card">
       <h2>Contact Info</h2>
-      <p><strong>Phone</strong><br><a href="tel:+16166063304">+1 (616) 606-3304</a></p>
-      <p><strong>Email</strong><br><a href="mailto:repairnode@gmail.com">repairnode@gmail.com</a></p>
-      <p><strong>Address</strong><br>5260 Northland Drive NE Suite F<br>Grand Rapids, MI 49525</p>
+      <p><strong>Phone</strong><br><a href="tel:+16166063304" data-location="contact_card">+1 (616) 606-3304</a></p>
+      <p><strong>Email</strong><br><a href="mailto:repairnode@gmail.com" data-location="contact_card">repairnode@gmail.com</a></p>
+      <p><strong>Address</strong><br><a href="https://www.google.com/maps/dir/?api=1&amp;destination=5260+Northland+Drive+NE+Suite+F%2C+Grand+Rapids%2C+MI+49525" data-lead-event="directions" data-location="contact_card" target="_blank" rel="noopener">5260 Northland Drive NE Suite F<br>Grand Rapids, MI 49525</a></p>
+      <div class="contact-social-links" aria-label="Follow Repair Node">
+        <span>Follow Us</span>
+        <a href="https://tiktok.com/@repair_node" data-social-platform="tiktok" target="_blank" rel="noopener" aria-label="Repair Node on TikTok">
+          <img src="/images/tiktok.png" alt="">
+        </a>
+        <a href="https://facebook.com/repairnode" data-social-platform="facebook" target="_blank" rel="noopener" aria-label="Repair Node on Facebook">
+          <img src="/images/facebook.png" alt="">
+        </a>
+      </div>
     </article>
   </div>
 
@@ -115,7 +125,7 @@
       <p>Tell us how to reach you, and add repair details if you would like to schedule service.</p>
     </div>
 
-    <form class="contact-form" id="contact-form">
+    <form class="contact-form" id="contact-form" name="contact_form">
       <input type="hidden" name="access_key" value="b8d2a199-78da-4c6b-9cae-2ab69df18e78">
       <input type="hidden" name="subject" value="New Repair Request - Repair Node">
       <input type="hidden" name="form_started_at" id="form-started-at">
@@ -128,18 +138,18 @@
 
       <label class="field-group" for="contact-phone">
         <span>Phone Number</span>
-        <input id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="(616) 555-1234">
+        <input id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="(616) 555-1234" required>
       </label>
 
       <label class="field-group" for="contact-email">
         <span>Email</span>
-        <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+        <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
       </label>
 
       <fieldset class="field-group contact-radio-group">
         <legend>Preferred Contact Method</legend>
         <label class="radio-option">
-          <input type="radio" name="preferred-contact" value="Call">
+          <input type="radio" name="preferred-contact" value="Call" required>
           <span>Call</span>
         </label>
         <label class="radio-option">
@@ -148,8 +158,16 @@
         </label>
       </fieldset>
 
+      <label class="field-group contact-message" id="contact-message-field" for="contact-message">
+        <span>Message (Optional)</span>
+        <textarea id="contact-message" name="message" rows="5" placeholder="How can we help?"></textarea>
+      </label>
+
       <div class="contact-schedule-toggle">
-        <p class="contact-schedule-copy">Want to schedule a repair?</p>
+        <div>
+          <p class="contact-schedule-copy">Want to schedule a repair?</p>
+          <p class="contact-schedule-note">Click Add Repair Details to add your device information.</p>
+        </div>
         <button type="button" class="btn-primary schedule-toggle" id="schedule-toggle" aria-expanded="false" aria-controls="repair-details">
           Add Repair Details
         </button>
@@ -209,7 +227,7 @@
       </div>
 
       <div class="contact-form-actions">
-        <div class="h-captcha" data-captcha="true"></div>
+        <div class="h-captcha" data-captcha="true" data-onload="onRepairNodeCaptchaLoaded" data-callback="onRepairNodeCaptchaSuccess" data-error-callback="onRepairNodeCaptchaError" data-expired-callback="onRepairNodeCaptchaExpired"></div>
         <button type="submit" class="btn-primary" id="submit-btn">Send Request</button>
       </div>
 
@@ -248,8 +266,8 @@
 </footer>
 
 <script src="/js/main.js"></script>
-<script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="/js/contact.js"></script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 
 </body>
 </html>

@@ -109,26 +109,23 @@
     <a
       href="tel:+16166063304"
       class="call-cta"
+      data-location="nav"
+      aria-label="Call Repair Node now"
       onclick="plausible('CallClick')">
-      Call Now
+      <span class="cta-label-desktop">Call Now</span><span class="cta-label-mobile">Call</span>
     </a>
+    <a href="mailto:repairnode@gmail.com" class="email-cta" data-location="nav" aria-label="Email Repair Node now"><span class="cta-label-desktop">Email Now</span><span class="cta-label-mobile">Email</span></a>
   </div>
 
   <!-- Social Icons -->
   <div class="social-links">
-    <a href="https://tiktok.com/@repair_node" target="_blank" rel="noopener">
+    <a href="https://tiktok.com/@repair_node" data-social-platform="tiktok" target="_blank" rel="noopener">
       <img src="images/tiktok.png" alt="TikTok">
     </a>
-    <a href="https://facebook.com/repairnode" target="_blank" rel="noopener">
+    <a href="https://facebook.com/repairnode" data-social-platform="facebook" target="_blank" rel="noopener">
       <img src="images/facebook.png" alt="Facebook">
     </a>
   </div>
-
-  <aside class="holiday-hours-widget" aria-label="Memorial Day hours">
-    <p class="holiday-hours-title">Memorial Day Hours</p>
-    <p>Closed Monday, May 25. Reopening Tuesday, May 26.</p>
-    <p class="holiday-hours-remembrance">Remembering those who gave everything.</p>
-  </aside>
 </header>
 
 <!-- HERO -->
@@ -140,6 +137,8 @@
     <a
       href="/pricing-2/"
       class="btn-primary"
+      data-lead-event="estimate_cta_click"
+      data-location="hero"
       onclick="plausible('GetEstimateClick')">
       Get an Estimate
     </a>

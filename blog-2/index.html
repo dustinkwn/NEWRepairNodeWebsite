@@ -74,7 +74,8 @@
   </nav>
 
   <div class="header-right">
-    <a href="tel:+16166063304" class="call-cta" onclick="plausible('CallClick')">Call Now</a>
+    <a href="tel:+16166063304" class="call-cta" data-location="nav" aria-label="Call Repair Node now" onclick="plausible('CallClick')"><span class="cta-label-desktop">Call Now</span><span class="cta-label-mobile">Call</span></a>
+    <a href="mailto:repairnode@gmail.com" class="email-cta" data-location="nav" aria-label="Email Repair Node now"><span class="cta-label-desktop">Email Now</span><span class="cta-label-mobile">Email</span></a>
   </div>
 </header>
 
@@ -92,8 +93,8 @@
       <h2>Blog posts coming soon, check back often.</h2>
       <p>We are putting together repair tips, device care notes, and answers to common customer questions.</p>
       <div class="blog-actions">
-        <a href="/pricing-2/" class="btn-primary">View Pricing</a>
-        <a href="/contact/" class="btn-secondary">Contact the Shop</a>
+        <a href="/pricing-2/" class="btn-primary" data-lead-event="estimate_cta_click" data-location="blog">View Pricing</a>
+        <a href="/contact/" class="btn-secondary" data-lead-event="direct_contact_click" data-location="blog">Contact the Shop</a>
       </div>
     </div>
 

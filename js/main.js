@@ -28,6 +28,72 @@
     }
   }
 
+  function trackLeadEvent(name, params = {}) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, {
+        event_category: "lead",
+        page_path: window.location.pathname,
+        ...params
+      });
+    }
+  }
+
+  window.trackLeadEvent = trackLeadEvent;
+
+  function getLinkText(element) {
+    const imageAlt = element.querySelector("img")?.alt;
+    return (element.textContent.trim() || imageAlt || element.getAttribute("aria-label") || "Unlabeled link")
+      .replace(/\s+/g, " ");
+  }
+
+  function onLeadLinkClick(event) {
+    const link = event.target.closest("a[href]");
+    if (!link) {
+      return;
+    }
+
+    const href = link.getAttribute("href") || "";
+    const params = {
+      link_url: href,
+      link_text: getLinkText(link),
+      ...(link.dataset.location ? { location: link.dataset.location } : {})
+    };
+
+    if (href.startsWith("tel:")) {
+      trackLeadEvent("phone_click", params);
+      return;
+    }
+
+    if (href.startsWith("mailto:")) {
+      trackLeadEvent("email_click", params);
+      return;
+    }
+
+    if (link.dataset.socialPlatform) {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "social_click", {
+          link_url: href,
+          link_text: getLinkText(link),
+          social_platform: link.dataset.socialPlatform,
+          page_path: window.location.pathname
+        });
+      }
+      return;
+    }
+
+    if (link.dataset.leadEvent && link.dataset.leadEvent !== "directions") {
+      trackLeadEvent(link.dataset.leadEvent, params);
+      return;
+    }
+
+    if (
+      link.dataset.leadEvent === "directions"
+      || /google\.(com|[a-z.]+)\/maps|maps\.app\.goo\.gl|goo\.gl\/maps/i.test(href)
+    ) {
+      trackLeadEvent("directions_click", params);
+    }
+  }
+
   function getScrollPercent() {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -86,6 +152,7 @@
       });
     }
 
+    document.addEventListener("click", onLeadLinkClick);
     window.addEventListener("scroll", onScroll, { passive: true });
   });
 

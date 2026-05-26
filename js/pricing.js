@@ -19,13 +19,24 @@
   const modelLabel = document.getElementById("device-model-label");
   const subModelLabel = document.getElementById("device-submodel-label");
   const serviceLabel = document.getElementById("device-service-label");
-  const estimateButton = document.getElementById("device-estimate");
-  const result = document.getElementById("estimate-result");
   const pathPreview = document.getElementById("selection-path");
+  const selectionEstimate = document.getElementById("selection-estimate");
+  const selectionPrice = document.getElementById("selection-price");
+  const selectionPriceNote = document.getElementById("selection-price-note");
+  const pricingActionNote = document.getElementById("pricing-action-note");
+  const scheduleRepairLink = document.getElementById("schedule-repair-link");
   const modelField = modelSelect?.closest(".field-group");
   const subModelField = subModelSelect?.closest(".field-group");
+  const scheduleRepairHref = scheduleRepairLink?.getAttribute("href") ?? "";
 
   let catalog = [];
+  let hasStartedEstimate = false;
+
+  function trackEstimateEvent(name, params = {}) {
+    if (typeof window.trackLeadEvent === "function") {
+      window.trackLeadEvent(name, params);
+    }
+  }
 
   function setOptions(select, items, placeholder) {
     select.innerHTML = "";
@@ -222,20 +233,151 @@
     pathPreview.textContent = parts.length ? parts.join(" > ") : "Choose a device path to see your estimate.";
   }
 
-  function resetResult() {
-    result.style.display = "none";
-    result.innerHTML = "";
+  function resetEstimateDisplay() {
+    if (selectionEstimate) {
+      selectionEstimate.hidden = true;
+    }
+
+    if (selectionPrice) {
+      selectionPrice.textContent = "";
+    }
+
+    if (selectionPriceNote) {
+      selectionPriceNote.hidden = true;
+      selectionPriceNote.textContent = "";
+    }
+
+    if (pricingActionNote) {
+      pricingActionNote.textContent = "Select a service to see your estimate.";
+    }
+
+    scheduleRepairLink?.classList.remove("btn-primary");
+    scheduleRepairLink?.classList.add("btn-secondary");
+  }
+
+  function getSelectedModelName() {
+    return [modelSelect.value, subModelSelect.value].filter(Boolean).join(" ");
+  }
+
+  function updateScheduleRepairLink() {
+    if (!scheduleRepairLink) {
+      return;
+    }
+
+    const selectedService = getSelectedService();
+    const parameters = new URLSearchParams();
+
+    if (makeSelect.value) {
+      parameters.set("make", makeSelect.value);
+    }
+
+    if (getSelectedModelName()) {
+      parameters.set("model", getSelectedModelName());
+    }
+
+    if (selectedService?.name) {
+      parameters.set("service", selectedService.name);
+    }
+
+    const [path, hash = ""] = scheduleRepairHref.split("#");
+    const query = parameters.toString();
+    scheduleRepairLink.href = `${path}${query ? `?${query}` : ""}${hash ? `#${hash}` : ""}`;
   }
 
   function updateEstimateState() {
-    const hasFullSelection = Boolean(getSelectedService());
-    estimateButton.disabled = !hasFullSelection;
-    estimateButton.classList.toggle("btn-disabled", !hasFullSelection);
-    estimateButton.classList.toggle("btn-primary", hasFullSelection);
     updatePathPreview();
+    updateScheduleRepairLink();
+  }
+
+  function getEstimateEventParams(selectedService = getSelectedService()) {
+    return {
+      form_id: "pricing-form",
+      form_name: "pricing_estimator",
+      device_type: typeSelect.value,
+      device_make: makeSelect.value,
+      device_model: getSelectedModelName(),
+      service_name: selectedService?.name || "",
+      estimate_price: selectedService ? formatPrice(selectedService) : ""
+    };
+  }
+
+  function trackEstimateStart() {
+    if (hasStartedEstimate || !typeSelect.value) {
+      return;
+    }
+
+    hasStartedEstimate = true;
+    trackEstimateEvent("estimate_start", getEstimateEventParams());
+  }
+
+  function scrollToCompletedEstimate() {
+    if (!selectionEstimate || !scheduleRepairLink) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      const top = selectionEstimate.getBoundingClientRect().top + window.scrollY;
+      const bottom = scheduleRepairLink.getBoundingClientRect().bottom + window.scrollY;
+      const contentHeight = bottom - top;
+      const viewportHeight = window.innerHeight;
+      const targetTop = contentHeight < viewportHeight
+        ? top - ((viewportHeight - contentHeight) / 2)
+        : top - 16;
+      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth";
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior
+      });
+    });
+  }
+
+  function renderEstimate() {
+    const selectedService = getSelectedService();
+    if (!selectedService) {
+      resetEstimateDisplay();
+      updateEstimateState();
+      return;
+    }
+
+    updateEstimateState();
+    if (selectionPrice) {
+      selectionPrice.textContent = formatPrice(selectedService);
+    }
+
+    if (selectionPriceNote) {
+      const priceNote = getPricingNote(selectedService);
+      selectionPriceNote.textContent = priceNote;
+      selectionPriceNote.hidden = !priceNote;
+    }
+
+    if (selectionEstimate) {
+      selectionEstimate.hidden = false;
+    }
+
+    if (pricingActionNote) {
+      pricingActionNote.textContent = "Your estimate is ready. Schedule when you are ready.";
+    }
+
+    scheduleRepairLink?.classList.remove("btn-secondary");
+    scheduleRepairLink?.classList.add("btn-primary");
+
+    trackEstimateEvent("estimate_viewed", getEstimateEventParams(selectedService));
+
+    if (typeof window.plausible === "function") {
+      window.plausible("EstimateViewed", {
+        props: {
+          path: pathPreview.textContent,
+          price: selectedService.priceLabel ?? String(selectedService.price)
+        }
+      });
+    }
   }
 
   function onTypeChange() {
+    trackEstimateStart();
     const type = getSelectedType();
     setOptions(makeSelect, type?.makes ?? [], "Select Make");
     setModelVisibility(false);
@@ -243,7 +385,7 @@
     resetSelect(modelSelect, "Select Model");
     resetSelect(subModelSelect, "Select Sub-Model");
     resetSelect(serviceSelect, "Select Service");
-    resetResult();
+    resetEstimateDisplay();
     updateEstimateState();
   }
 
@@ -264,7 +406,7 @@
       setOptions(serviceSelect, getAvailableServices(), "Select Service");
     }
 
-    resetResult();
+    resetEstimateDisplay();
     updateEstimateState();
   }
 
@@ -282,19 +424,21 @@
       setOptions(serviceSelect, getAvailableServices(), "Select Service");
     }
 
-    resetResult();
+    resetEstimateDisplay();
     updateEstimateState();
   }
 
   function onSubModelChange() {
     setOptions(serviceSelect, getAvailableServices(), "Select Service");
-    resetResult();
+    resetEstimateDisplay();
     updateEstimateState();
   }
 
   function onServiceChange() {
-    resetResult();
-    updateEstimateState();
+    renderEstimate();
+    if (getSelectedService()) {
+      scrollToCompletedEstimate();
+    }
   }
 
   async function loadCatalog() {
@@ -309,36 +453,14 @@
       catalog = data.deviceTypes ?? [];
       setOptions(typeSelect, catalog, "Select Device Type");
     } catch (error) {
-      result.innerHTML = '<p class="estimate-description">We could not load pricing right now. Please call for a quote.</p>';
-      result.style.display = "block";
+      pathPreview.textContent = "We could not load pricing right now. Please call for a quote.";
+      resetEstimateDisplay();
     }
   }
 
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    const selectedService = getSelectedService();
-    if (!selectedService) {
-      return;
-    }
-
-    result.innerHTML = [
-      "<p class=\"estimate-label\">Estimated Price</p>",
-      `<p class="estimate-price">${formatPrice(selectedService)}</p>`,
-      `<p class="estimate-description">${pathPreview.textContent}</p>`,
-      getPricingNote(selectedService) ? `<p class="estimate-description">${getPricingNote(selectedService)}</p>` : ""
-    ].join("");
-    result.style.display = "block";
-    result.scrollIntoView({ behavior: "smooth", block: "center" });
-
-    if (typeof window.plausible === "function") {
-      window.plausible("EstimateViewed", {
-        props: {
-          path: pathPreview.textContent,
-          price: selectedService.priceLabel ?? String(selectedService.price)
-        }
-      });
-    }
+    renderEstimate();
   });
 
   typeSelect?.addEventListener("change", onTypeChange);
@@ -346,6 +468,17 @@
   modelSelect?.addEventListener("change", onModelChange);
   subModelSelect?.addEventListener("change", onSubModelChange);
   serviceSelect?.addEventListener("change", onServiceChange);
+  scheduleRepairLink?.addEventListener("click", () => {
+    const selectedService = getSelectedService();
+
+    trackEstimateEvent("schedule_repair_click", {
+      ...getEstimateEventParams(selectedService),
+      location: "pricing_estimate",
+      link_url: scheduleRepairLink.getAttribute("href") || "",
+      link_text: scheduleRepairLink.textContent.trim(),
+      estimate_completed: Boolean(selectedService)
+    });
+  });
 
   resetSelect(makeSelect, "Select Make");
   resetSelect(modelSelect, "Select Model");

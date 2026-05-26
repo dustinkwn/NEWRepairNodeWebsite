@@ -99,7 +99,8 @@
   </nav>
 
   <div class="header-right">
-    <a href="tel:+16166063304" class="call-cta" onclick="plausible('CallClick')">Call Now</a>
+    <a href="tel:+16166063304" class="call-cta" data-location="nav" aria-label="Call Repair Node now" onclick="plausible('CallClick')"><span class="cta-label-desktop">Call Now</span><span class="cta-label-mobile">Call</span></a>
+    <a href="mailto:repairnode@gmail.com" class="email-cta" data-location="nav" aria-label="Email Repair Node now"><span class="cta-label-desktop">Email Now</span><span class="cta-label-mobile">Email</span></a>
   </div>
 </header>
 
@@ -116,7 +117,7 @@
   <div class="pricing-card pricing-card-wide">
     <div class="pricing-card-copy">
       <h2>Find Your Estimate</h2>
-      <p class="pricing-lead">Complete each box to find your estimate.</p>
+      <p class="pricing-lead">Complete each box to find your estimate or <a href="/contact/" data-lead-event="direct_contact_click" data-location="pricing_intro">click here to contact us directly</a>.</p>
     </div>
 
     <form id="pricing-form" class="pricing-form">
@@ -158,16 +159,19 @@
       <div class="selection-path-wrap">
         <p class="selection-path-label">Selected Path</p>
         <p id="selection-path" class="selection-path">Choose a device path to see your estimate.</p>
+        <div id="selection-estimate" class="selection-estimate" hidden>
+          <p class="selection-price-label">Estimated Price</p>
+          <p id="selection-price" class="selection-price"></p>
+          <p id="selection-price-note" class="selection-price-note" hidden></p>
+        </div>
       </div>
 
       <div class="pricing-actions">
-        <p class="pricing-action-note">Click here after completing all boxes.</p>
-        <button id="device-estimate" type="submit" class="btn-disabled" disabled>Get Estimate</button>
-        <a href="/contact/#schedule-repair" class="btn-secondary">Schedule Repair</a>
+        <p id="pricing-action-note" class="pricing-action-note">Select a service to see your estimate.</p>
+        <a id="schedule-repair-link" href="/contact/#schedule-repair" class="btn-secondary" data-location="pricing_estimate">Schedule a Repair</a>
       </div>
     </form>
 
-    <div id="estimate-result" class="estimate-result"></div>
   </div>
 
   <div class="pricing-card static pricing-card-sidebar">
@@ -176,7 +180,7 @@
     <p><strong>Phone, tablet, and gaming diagnostics are $45</strong></p>
     <p><strong>For laptop and desktop computers, we charge $100 diagnostic fee.</strong></p>
     <p><strong>Advanced work starts at $150+</strong></p>
-    <a href="/contact/" class="btn-secondary">Contact the Shop</a>
+    <a href="/contact/" class="btn-secondary" data-lead-event="direct_contact_click" data-location="pricing_sidebar">Contact the Shop</a>
   </div>
 </section>
 
