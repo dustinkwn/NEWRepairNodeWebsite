@@ -1603,6 +1603,14 @@ select {
     justify-content: flex-start;
   }
 
+  .contact-social-links {
+    gap: 0.65rem;
+  }
+
+  .contact-social-links img {
+    height: 28px;
+  }
+
   .contact-form-actions .btn-primary,
   .contact-schedule-toggle .btn-primary {
     width: 100%;
