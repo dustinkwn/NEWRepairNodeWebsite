@@ -75,7 +75,8 @@
           link_url: href,
           link_text: getLinkText(link),
           social_platform: link.dataset.socialPlatform,
-          page_path: window.location.pathname
+          page_path: window.location.pathname,
+          ...(link.dataset.location ? { location: link.dataset.location } : {})
         });
       }
       return;
