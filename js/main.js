@@ -107,6 +107,13 @@
       return;
     }
 
+    const userAgent = navigator.userAgent;
+    const isSafari = /Safari/i.test(userAgent) && !/(Chrome|CriOS|FxiOS|EdgiOS|OPiOS|Android)/i.test(userAgent);
+    if (isSafari) {
+      mobileEmbed.closest(".featured-work-video")?.classList.add("preview-fallback");
+      return;
+    }
+
     if (document.querySelector("script[data-tiktok-mobile-embed]")) {
       return;
     }

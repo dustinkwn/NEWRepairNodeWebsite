@@ -864,6 +864,15 @@ footer {
     margin-inline: auto !important;
   }
 
+  .featured-work-video.preview-fallback .featured-work-preview {
+    display: block;
+    width: min(100%, 270px);
+  }
+
+  .featured-work-video.preview-fallback .featured-work-mobile-embed {
+    display: none;
+  }
+
   .social-links {
     left: 1rem;
   }
