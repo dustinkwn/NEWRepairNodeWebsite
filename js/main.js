@@ -101,6 +101,23 @@
     return Math.round((scrollTop / docHeight) * 100);
   }
 
+  function loadMobileTikTokEmbed() {
+    const mobileEmbed = document.querySelector(".featured-work-mobile-embed");
+    if (!mobileEmbed || !window.matchMedia("(max-width: 600px)").matches) {
+      return;
+    }
+
+    if (document.querySelector("script[data-tiktok-mobile-embed]")) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://www.tiktok.com/embed.js";
+    script.async = true;
+    script.dataset.tiktokMobileEmbed = "true";
+    document.body.appendChild(script);
+  }
+
   /* -------------------------
      SCROLL HANDLER
   ------------------------- */
@@ -130,6 +147,7 @@
     const header = document.querySelector(".site-header");
     const hamburger = document.getElementById("hamburger");
     const nav = document.getElementById("main-nav");
+    const mobileViewport = window.matchMedia("(max-width: 600px)");
 
     if (header && hamburger && nav) {
       const closeMenu = () => {
@@ -152,6 +170,13 @@
         }
       });
     }
+
+    loadMobileTikTokEmbed();
+    mobileViewport.addEventListener?.("change", (event) => {
+      if (event.matches) {
+        loadMobileTikTokEmbed();
+      }
+    });
 
     document.addEventListener("click", onLeadLinkClick);
     window.addEventListener("scroll", onScroll, { passive: true });

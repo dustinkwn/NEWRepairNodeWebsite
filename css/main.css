@@ -433,6 +433,10 @@ body.show-socials .social-links {
   min-width: 0;
 }
 
+.featured-work-mobile-embed {
+  display: none;
+}
+
 .featured-work-preview {
   position: relative;
   display: block;
@@ -836,7 +840,28 @@ footer {
   }
 
   .featured-work-preview {
-    width: min(100%, 270px);
+    display: none;
+  }
+
+  .featured-work-mobile-embed {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .featured-work-mobile-embed .tiktok-embed {
+    width: min(100%, 325px) !important;
+    min-width: 0 !important;
+    max-width: 325px !important;
+    margin: 0 auto !important;
+  }
+
+  .featured-work-mobile-embed iframe {
+    display: block;
+    width: 100% !important;
+    max-width: 325px !important;
+    margin-inline: auto !important;
   }
 
   .social-links {
