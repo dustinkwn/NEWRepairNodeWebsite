@@ -2,6 +2,7 @@
 [hidden] { display: none !important; }
 .skip-link { position: absolute; left: 1rem; top: -8rem; z-index: 1100; padding: .8rem; background: white; }
 .skip-link:focus { top: 1rem; }
+.page-banner-content .pricing-banner-title { font-size: 2.75rem; line-height: 1.2; font-weight: 700; margin-bottom: .75rem; opacity: 1; }
 :is(a, button, select):focus-visible { outline: 3px solid #1467ad; outline-offset: 4px; }
 .pricing-page { max-width: 1056px; margin: auto; padding: 3.5rem 1.5rem 4rem; }
 .pricing-intro { max-width: 780px; padding: 0; margin-bottom: 2.5rem; }
@@ -54,6 +55,7 @@
 .diagnostic-contact { margin-top: 1.25rem; color: #555; font-size: .9rem; }
 .main-nav a[aria-current="page"] { color: var(--red); text-decoration: underline; text-underline-offset: 6px; }
 @media(max-width: 600px) {
+ .page-banner-content .pricing-banner-title { font-size: 1.9rem; }
  .pricing-page { padding: 2rem 1rem 3rem; }
  .pricing-intro { margin-bottom: 1.75rem; }
  .category-toggle, .category-panel { padding: 1.1rem; }
