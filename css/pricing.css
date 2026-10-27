@@ -1,0 +1,69 @@
+/* Scoped pricing-page additions; shared site branding remains unchanged. */
+[hidden] { display: none !important; }
+.skip-link { position: absolute; left: 1rem; top: -8rem; z-index: 1100; padding: .8rem; background: white; }
+.skip-link:focus { top: 1rem; }
+:is(a, button, select):focus-visible { outline: 3px solid #1467ad; outline-offset: 4px; }
+.pricing-page { max-width: 1056px; margin: auto; padding: 3.5rem 1.5rem 4rem; }
+.pricing-intro { max-width: 780px; padding: 0; margin-bottom: 2.5rem; }
+.pricing-eyebrow { font-size: .8rem; font-weight: 700; color: var(--red); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .8rem; }
+.pricing-intro h1 { font-size: clamp(2rem, 5vw, 3.3rem); letter-spacing: -.035em; max-width: 720px; margin-bottom: 1.25rem; }
+.pricing-intro > p:last-child { color: #505050; font-size: 1.075rem; max-width: 740px; }
+.selector-intro { margin-bottom: 1.25rem; color: #555; }
+.repair-category { padding: 0; background: #fff; border: 1px solid #dcdcdc; border-radius: 6px; margin-bottom: .85rem; overflow: hidden; }
+.repair-category h2 { margin: 0; font-size: 1.25rem; }
+.category-toggle { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 1.5rem; text-align: left; border: 0; background: white; color: var(--dark); font: inherit; cursor: pointer; transition: background .15s ease; }
+.category-toggle:hover { background: #f7f7f7; }
+.category-toggle:focus-visible { outline-offset: -5px; }
+.category-title { display: block; font-weight: 700; }
+.category-description { display: block; font-size: .875rem; line-height: 1.5; color: #666; font-weight: 400; margin-top: .35rem; }
+.category-chevron { color: var(--red); font-size: 1.75rem; font-weight: 400; transition: transform .18s ease; }
+.category-toggle[aria-expanded="true"] .category-chevron { transform: rotate(45deg); }
+.category-toggle[aria-expanded="true"] { border-bottom: 1px solid #e7e7e7; }
+.category-panel { padding: 1.5rem; animation: reveal-panel .16s ease-out; }
+@keyframes reveal-panel { from { opacity: .5; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.repair-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.repair-field { display: flex; flex-direction: column; gap: .45rem; font-size: .875rem; font-weight: 700; min-width: 0; }
+.repair-field select { width: 100%; min-height: 50px; padding: .75rem .6rem; background: #fff; border: 1px solid #aaa; border-radius: 4px; color: #111; font: 400 1rem Arial, Helvetica, sans-serif; }
+.repair-field select:disabled { background: #f5f5f5; color: #666; border-color: #d5d5d5; }
+.estimate-region { margin-top: 1.5rem; border-top: 1px solid #e5e5e5; padding-top: 1.25rem; }
+.estimate-prompt { color: #666; font-size: .95rem; }
+.estimate-region h3 { font-size: 1.15rem; margin-bottom: .6rem; }
+.estimate-amount { margin-bottom: .5rem; }
+.estimate-amount strong { font-size: 1.6rem; color: var(--red); }
+.estimate-note { max-width: 720px; color: #555; font-size: .9rem; }
+.estimate-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+.estimate-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.1rem; margin: 0; }
+.screen-quality { margin-top: 1.75rem; padding: 1.1rem 1.25rem; border-left: 3px solid #c4161c; background: #f8f8f8; }
+.screen-quality h3 { font-size: 1rem; margin-bottom: .5rem; }
+.screen-quality p { font-size: .9rem; color: #555; }
+.custom-repair { margin-top: 1.25rem; font-size: .9rem; color: #555; }
+.custom-repair a, .diagnostic-policy a { color: #a11217; text-decoration: underline; text-underline-offset: 3px; }
+.diagnostic-policy { padding: 2rem 0 0; margin-top: 1.75rem; border-top: 1px solid #ddd; }
+.diagnostic-policy h2 { font-size: 1.3rem; margin-bottom: .75rem; }
+.diagnostic-fees { margin: 1.25rem 0 1.5rem; }
+.diagnostic-fees > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem; padding: 1.1rem 0; border-bottom: 1px solid #e2e2e2; }
+.diagnostic-fees > div:first-child { border-top: 1px solid #e2e2e2; }
+.diagnostic-fees dt { font-size: 1rem; font-weight: 600; }
+.diagnostic-fees dt span { display: block; margin-top: .2rem; color: #666; font-size: .875rem; font-weight: 400; }
+.diagnostic-fees dd { margin: 0; color: var(--dark); font-size: 1.5rem; font-weight: 700; text-align: right; white-space: nowrap; }
+.diagnostic-fees dd span { display: block; color: #666; font-size: .8rem; font-weight: 400; }
+.diagnostic-credit { padding-left: 1rem; border-left: 3px solid var(--red); max-width: 740px; }
+.diagnostic-credit p { color: #555; font-size: .9rem; }
+.diagnostic-credit p + p { margin-top: .35rem; }
+.diagnostic-credit strong { color: var(--dark); }
+.diagnostic-contact { margin-top: 1.25rem; color: #555; font-size: .9rem; }
+.main-nav a[aria-current="page"] { color: var(--red); text-decoration: underline; text-underline-offset: 6px; }
+@media(max-width: 600px) {
+ .pricing-page { padding: 2rem 1rem 3rem; }
+ .pricing-intro { margin-bottom: 1.75rem; }
+ .category-toggle, .category-panel { padding: 1.1rem; }
+ .repair-fields { grid-template-columns: 1fr; }
+ .estimate-actions { flex-direction: column; }
+ .estimate-amount strong { display: block; }
+ .category-description { font-size: .8rem; }
+ .category-title { font-size: 1.1rem; }
+}
+@media(prefers-reduced-motion: reduce) {
+ .category-panel { animation: none; }
+ .category-chevron, .category-toggle { transition: none; }
+}

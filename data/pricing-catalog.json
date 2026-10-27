@@ -25,97 +25,97 @@
                 {
                   "name": "6",
                   "services": [
-                    { "name": "Screen Repair", "price": 75 },
-                    { "name": "Battery Replacement", "price": 75 },
-                    { "name": "Charging Port Replacement", "price": 75 }
+                    { "name": "Screen Repair", "price": 69, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "6 Plus",
                   "services": [
-                    { "name": "Screen Repair", "price": 75 },
-                    { "name": "Battery Replacement", "price": 75 },
-                    { "name": "Charging Port Replacement", "price": 75 }
+                    { "name": "Screen Repair", "price": 69, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "6s",
                   "services": [
-                    { "name": "Screen Repair", "price": 75 },
-                    { "name": "Battery Replacement", "price": 75 },
-                    { "name": "Charging Port Replacement", "price": 75 }
+                    { "name": "Screen Repair", "price": 69, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "6s Plus",
                   "services": [
-                    { "name": "Screen Repair", "price": 75 },
-                    { "name": "Battery Replacement", "price": 75 },
-                    { "name": "Charging Port Replacement", "price": 75 }
+                    { "name": "Screen Repair", "price": 69, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "7",
                   "services": [
-                    { "name": "Screen Repair", "price": 85 },
-                    { "name": "Battery Replacement", "price": 85 },
-                    { "name": "Charging Port Replacement", "price": 85 }
+                    { "name": "Screen Repair", "price": 69, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "7 Plus",
                   "services": [
-                    { "name": "Screen Repair", "price": 85 },
-                    { "name": "Battery Replacement", "price": 85 },
-                    { "name": "Charging Port Replacement", "price": 85 }
+                    { "name": "Screen Repair", "price": 79, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "8",
                   "services": [
-                    { "name": "Screen Repair", "price": 95 },
-                    { "name": "Battery Replacement", "price": 95 },
-                    { "name": "Charging Port Replacement", "price": 95 }
+                    { "name": "Screen Repair", "price": 79, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "8 Plus",
                   "services": [
-                    { "name": "Screen Repair", "price": 100 },
-                    { "name": "Battery Replacement", "price": 100 },
-                    { "name": "Charging Port Replacement", "price": 100 }
+                    { "name": "Screen Repair", "price": 79, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 }
                   ]
                 },
                 {
                   "name": "X",
                   "services": [
-                    { "name": "Screen Repair", "price": 135 },
-                    { "name": "Battery Replacement", "price": 125 },
-                    { "name": "Charging Port Replacement", "price": 125 }
+                    { "name": "Screen Repair", "price": 129, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 79 },
+                    { "name": "Charging Port Replacement", "price": 89 }
                   ]
                 },
                 {
                   "name": "Xs",
                   "services": [
-                    { "name": "Screen Repair", "price": 135 },
-                    { "name": "Battery Replacement", "price": 125 },
-                    { "name": "Charging Port Replacement", "price": 125 }
+                    { "name": "Screen Repair", "price": 129, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 79 },
+                    { "name": "Charging Port Replacement", "price": 89 }
                   ]
                 },
                 {
                   "name": "Xs Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 145 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 145 }
+                    { "name": "Screen Repair", "price": 139, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 79 },
+                    { "name": "Charging Port Replacement", "price": 89 }
                   ]
                 },
                 {
                   "name": "XR",
                   "services": [
-                    { "name": "Screen Repair", "price": 100 },
-                    { "name": "Battery Replacement", "price": 110 },
-                    { "name": "Charging Port Replacement", "price": 110 },
+                    { "name": "Screen Repair", "price": 89, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 79 },
+                    { "name": "Charging Port Replacement", "price": 89 },
                     { "name": "Camera Glass Repair", "price": 130 },
                     { "name": "Back Glass Repair", "price": 130 }
                   ]
@@ -123,9 +123,9 @@
                 {
                   "name": "SE 2020/2022",
                   "services": [
-                    { "name": "Screen Repair", "price": 90 },
-                    { "name": "Battery Replacement", "price": 90 },
-                    { "name": "Charging Port Replacement", "price": 90 },
+                    { "name": "Screen Repair", "price": 79, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 69 },
+                    { "name": "Charging Port Replacement", "price": 79 },
                     { "name": "Camera Glass Repair", "price": 110 },
                     { "name": "Back Glass Repair", "price": 120 }
                   ]
@@ -133,9 +133,9 @@
                 {
                   "name": "11",
                   "services": [
-                    { "name": "Screen Repair", "price": 100 },
-                    { "name": "Battery Replacement", "price": 110 },
-                    { "name": "Charging Port Replacement", "price": 110 },
+                    { "name": "Screen Repair", "price": 89, "displayType": "LCD", "displayLabel": "LCD Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 79 },
+                    { "name": "Charging Port Replacement", "price": 99 },
                     { "name": "Camera Glass Repair", "price": 130 },
                     { "name": "Back Glass Repair", "price": 130 }
                   ]
@@ -143,9 +143,9 @@
                 {
                   "name": "11 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 135 },
-                    { "name": "Battery Replacement", "price": 135 },
-                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Screen Repair", "price": 129, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 79 },
+                    { "name": "Charging Port Replacement", "price": 99 },
                     { "name": "Camera Glass Repair", "price": 170 },
                     { "name": "Back Glass Repair", "price": 170 }
                   ]
@@ -153,9 +153,9 @@
                 {
                   "name": "11 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 145 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Screen Repair", "price": 139, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 79 },
+                    { "name": "Charging Port Replacement", "price": 99 },
                     { "name": "Camera Glass Repair", "price": 170 },
                     { "name": "Back Glass Repair", "price": 170 }
                   ]
@@ -163,9 +163,9 @@
                 {
                   "name": "12 Mini",
                   "services": [
-                    { "name": "Screen Repair", "price": 135 },
-                    { "name": "Battery Replacement", "price": 135 },
-                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Screen Repair", "price": 129, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 99 },
                     { "name": "Camera Glass Repair", "price": 130 },
                     { "name": "Back Glass Repair", "price": 130 }
                   ]
@@ -173,9 +173,9 @@
                 {
                   "name": "12",
                   "services": [
-                    { "name": "Screen Repair", "price": 135 },
-                    { "name": "Battery Replacement", "price": 135 },
-                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Screen Repair", "price": 129, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 99 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -183,9 +183,9 @@
                 {
                   "name": "12 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 135 },
-                    { "name": "Battery Replacement", "price": 135 },
-                    { "name": "Charging Port Replacement", "price": 135 },
+                    { "name": "Screen Repair", "price": 139, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 99 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -193,9 +193,9 @@
                 {
                   "name": "12 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 150 },
-                    { "name": "Battery Replacement", "price": 150 },
-                    { "name": "Charging Port Replacement", "price": 150 },
+                    { "name": "Screen Repair", "price": 149, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 99 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -203,9 +203,9 @@
                 {
                   "name": "13 Mini",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Screen Repair", "price": 149, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 109 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -213,9 +213,9 @@
                 {
                   "name": "13",
                   "services": [
-                    { "name": "Screen Repair", "price": 150 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Screen Repair", "price": 149, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 109 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -223,9 +223,9 @@
                 {
                   "name": "13 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 195 },
+                    { "name": "Screen Repair", "price": 149, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 109 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -233,9 +233,9 @@
                 {
                   "name": "13 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 170 },
-                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Screen Repair", "price": 159, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 109 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -243,9 +243,9 @@
                 {
                   "name": "14",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Screen Repair", "price": 139, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 180 },
                     { "name": "Back Glass Repair", "price": 180 }
                   ]
@@ -253,9 +253,9 @@
                 {
                   "name": "14 Plus",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Screen Repair", "price": 149, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 180 },
                     { "name": "Back Glass Repair", "price": 180 }
                   ]
@@ -263,9 +263,9 @@
                 {
                   "name": "14 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 140 },
+                    { "name": "Screen Repair", "price": 159, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -273,9 +273,9 @@
                 {
                   "name": "14 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 210 },
-                    { "name": "Charging Port Replacement", "price": 210 },
+                    { "name": "Screen Repair", "price": 159, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 89 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -283,9 +283,9 @@
                 {
                   "name": "15",
                   "services": [
-                    { "name": "Screen Repair", "price": 190 },
-                    { "name": "Battery Replacement", "price": 145 },
-                    { "name": "Charging Port Replacement", "price": 145 },
+                    { "name": "Screen Repair", "price": 159, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -293,9 +293,9 @@
                 {
                   "name": "15 Plus",
                   "services": [
-                    { "name": "Screen Repair", "price": 190 },
-                    { "name": "Battery Replacement", "price": 170 },
-                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Screen Repair", "price": 169, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -303,9 +303,9 @@
                 {
                   "name": "15 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 190 },
-                    { "name": "Battery Replacement", "price": 170 },
-                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Screen Repair", "price": 179, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -313,9 +313,9 @@
                 {
                   "name": "15 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 190 },
-                    { "name": "Battery Replacement", "price": 170 },
-                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Screen Repair", "price": 189, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 119 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -323,9 +323,9 @@
                 {
                   "name": "16e",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 },
-                    { "name": "Battery Replacement", "price": 170 },
-                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Screen Repair", "price": 149, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 129 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -333,9 +333,9 @@
                 {
                   "name": "16",
                   "services": [
-                    { "name": "Screen Repair", "price": 190 },
-                    { "name": "Battery Replacement", "price": 170 },
-                    { "name": "Charging Port Replacement", "price": 170 },
+                    { "name": "Screen Repair", "price": 179, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 129 },
                     { "name": "Camera Glass Repair", "price": 190 },
                     { "name": "Back Glass Repair", "price": 190 }
                   ]
@@ -343,9 +343,9 @@
                 {
                   "name": "16 Plus",
                   "services": [
-                    { "name": "Screen Repair", "price": 200 },
-                    { "name": "Battery Replacement", "price": 210 },
-                    { "name": "Charging Port Replacement", "price": 210 },
+                    { "name": "Screen Repair", "price": 189, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 99 },
+                    { "name": "Charging Port Replacement", "price": 129 },
                     { "name": "Camera Glass Repair", "price": 210 },
                     { "name": "Back Glass Repair", "price": 210 }
                   ]
@@ -353,9 +353,9 @@
                 {
                   "name": "16 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 200 },
-                    { "name": "Battery Replacement", "price": 190 },
-                    { "name": "Charging Port Replacement", "price": 190 },
+                    { "name": "Screen Repair", "price": 199, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 109 },
+                    { "name": "Charging Port Replacement", "price": 149 },
                     { "name": "Camera Glass Repair", "price": 260 },
                     { "name": "Back Glass Repair", "price": 260 }
                   ]
@@ -363,9 +363,9 @@
                 {
                   "name": "16 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 300 },
-                    { "name": "Battery Replacement", "price": 210 },
-                    { "name": "Charging Port Replacement", "price": 210 },
+                    { "name": "Screen Repair", "price": 279, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": 109 },
+                    { "name": "Charging Port Replacement", "price": 149 },
                     { "name": "Camera Glass Repair", "price": 260 },
                     { "name": "Back Glass Repair", "price": 260 }
                   ]
@@ -373,31 +373,41 @@
                 {
                   "name": "Air",
                   "services": [
-                    { "name": "Screen Repair", "price": 400 }
+                    { "name": "Screen Repair", "price": 379, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
+                    { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
                 },
                 {
                   "name": "17",
                   "services": [
-                    { "name": "Screen Repair", "price": 250 }
+                    { "name": "Screen Repair", "price": 229, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
+                    { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
                 },
                 {
                   "name": "17e",
                   "services": [
-                    { "name": "Screen Repair", "price": 160 }
+                    { "name": "Screen Repair", "price": 160, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
+                    { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
                 },
                 {
                   "name": "17 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 250 }
+                    { "name": "Screen Repair", "price": 249, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
+                    { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
                 },
                 {
                   "name": "17 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 300 }
+                    { "name": "Screen Repair", "price": 299, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
+                    { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
                 }
               ]

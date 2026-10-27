@@ -1,507 +1,144 @@
-/* =========================
-   PRICING PAGE SCRIPT
-   Repair Node
-========================= */
-
 (function () {
-  "use strict";
-
-  const catalogUrl = "/data/pricing-catalog.json?v=20260526-4";
-
-  const form = document.getElementById("pricing-form");
-  const typeSelect = document.getElementById("device-type");
-  const makeSelect = document.getElementById("device-make");
-  const modelSelect = document.getElementById("device-model");
-  const subModelSelect = document.getElementById("device-submodel");
-  const serviceSelect = document.getElementById("device-service");
-  const typeLabel = document.getElementById("device-type-label");
-  const makeLabel = document.getElementById("device-make-label");
-  const modelLabel = document.getElementById("device-model-label");
-  const subModelLabel = document.getElementById("device-submodel-label");
-  const serviceLabel = document.getElementById("device-service-label");
-  const pathPreview = document.getElementById("selection-path");
-  const selectionEstimate = document.getElementById("selection-estimate");
-  const selectionPrice = document.getElementById("selection-price");
-  const selectionPriceNote = document.getElementById("selection-price-note");
-  const pricingActionNote = document.getElementById("pricing-action-note");
-  const scheduleRepairLink = document.getElementById("schedule-repair-link");
-  const modelField = modelSelect ? modelSelect.closest(".field-group") : null;
-  const subModelField = subModelSelect ? subModelSelect.closest(".field-group") : null;
-  const scheduleRepairHref = scheduleRepairLink ? scheduleRepairLink.getAttribute("href") || "" : "";
-
-  let catalog = [];
+  'use strict';
+  const core = window.RepairPricing;
+  const categories = [
+    { id: 'phones', title: 'Phone Repairs', types: ['Phone'], description: 'Screens, batteries, charging ports & more' },
+    { id: 'tablets', title: 'Tablet Repairs', types: ['Tablet'], description: 'iPad screens, batteries & charging repairs' },
+    { id: 'computers', title: 'Laptop & Computer Repairs', types: ['Computer'], description: 'Apple & Windows laptops and desktops' },
+    { id: 'gaming', title: 'Game Console Repairs', types: ['Gaming', 'Controllers'], description: 'Xbox, PlayStation, Nintendo & controllers' }
+  ];
+  const host = document.getElementById('repair-categories');
+  const status = document.getElementById('catalog-status');
+  const controllers = [];
   let hasStartedEstimate = false;
-
-  function trackEstimateEvent(name, params = {}) {
-    if (typeof window.trackLeadEvent === "function") {
-      window.trackLeadEvent(name, params);
-    }
+  function track(name, params) {
+    if (typeof window.trackLeadEvent === 'function') window.trackLeadEvent(name, params);
   }
-
-  function setOptions(select, items, placeholder) {
-    select.innerHTML = "";
-
-    const placeholderOption = document.createElement("option");
-    placeholderOption.value = "";
-    placeholderOption.textContent = placeholder;
-    select.appendChild(placeholderOption);
-
-    items.forEach((item) => {
-      const option = document.createElement("option");
-      option.value = item.name;
-      option.textContent = item.name;
+  function options(select, items, placeholder) {
+    // Use real option nodes for older iPhone Safari, matching the existing site fix.
+    select.textContent = '';
+    const initial = document.createElement('option');
+    initial.value = ''; initial.textContent = placeholder; select.appendChild(initial);
+    items.forEach((item, index) => {
+      const option = document.createElement('option');
+      option.value = String(index); option.textContent = item.label || item.name;
       select.appendChild(option);
     });
-
-    select.disabled = items.length === 0;
-    select.value = "";
+    select.disabled = !items.length;
+    select.value = '';
   }
-
-  function resetSelect(select, placeholder) {
-    setOptions(select, [], placeholder);
-  }
-
-  function formatPrice(service) {
-    if (service && service.priceLabel) {
-      return service.priceLabel;
-    }
-
-    if (!service || typeof service.price !== "number") {
-      return "Call for pricing";
-    }
-
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0
-    }).format(service.price);
-  }
-
-  function getSelectedType() {
-    return catalog.find((item) => item.name === typeSelect.value);
-  }
-
-  function getSelectedMake() {
-    const type = getSelectedType();
-    return type ? type.makes.find((item) => item.name === makeSelect.value) : undefined;
-  }
-
-  function getSelectedModel() {
-    const make = getSelectedMake();
-    return make && make.models ? make.models.find((item) => item.name === modelSelect.value) : undefined;
-  }
-
-  function getSelectedSubModel() {
-    const model = getSelectedModel();
-    return model && model.subModels ? model.subModels.find((item) => item.name === subModelSelect.value) : undefined;
-  }
-
-  function getServiceSource() {
-    const make = getSelectedMake();
-    const model = getSelectedModel();
-
-    if (model && model.subModels && model.subModels.length) {
-      return getSelectedSubModel();
-    }
-
-    if (model && model.services && model.services.length) {
-      return model;
-    }
-
-    if (make && make.services && make.services.length && !(make.models && make.models.length)) {
-      return make;
-    }
-
-    return null;
-  }
-
-  function shouldShowModel() {
-    const make = getSelectedMake();
-    return Boolean(make && make.models && make.models.length);
-  }
-
-  function shouldShowSubModel() {
-    const model = getSelectedModel();
-    return Boolean(model && model.subModels && model.subModels.length);
-  }
-
-  function updateStepLabels() {
-    let step = 1;
-
-    if (typeLabel) typeLabel.textContent = `${step++}. Device Type`;
-    if (makeLabel) makeLabel.textContent = `${step++}. Make`;
-
-    if (shouldShowModel()) {
-      if (modelLabel) modelLabel.textContent = `${step++}. Model`;
-    }
-
-    if (shouldShowSubModel()) {
-      if (subModelLabel) subModelLabel.textContent = `${step++}. Sub-Model`;
-    }
-
-    if (serviceLabel) {
-      serviceLabel.textContent = `${step}. Service`;
-    }
-  }
-
-  function setModelVisibility(isVisible) {
-    if (modelField) {
-      modelField.classList.toggle("is-hidden", !isVisible);
-    }
-    if (!isVisible) {
-      modelSelect.value = "";
-    }
-    updateStepLabels();
-  }
-
-  function setSubModelVisibility(isVisible) {
-    if (subModelField) {
-      subModelField.classList.toggle("is-hidden", !isVisible);
-    }
-    if (!isVisible) {
-      subModelSelect.value = "";
-    }
-    updateStepLabels();
-  }
-
-  function getSelectedService() {
-    return getAvailableServices().find((item) => item.name === serviceSelect.value);
-  }
-
-  function getAvailableServices() {
-    const type = getSelectedType();
-    const make = getSelectedMake();
-    const model = getSelectedModel();
-    const serviceSource = getServiceSource();
-
-    if (!type || !serviceSource) {
-      return [];
-    }
-
-    const configuredNames = serviceSource.serviceOptions && serviceSource.serviceOptions.length
-      ? serviceSource.serviceOptions
-      : model && model.serviceOptions && model.serviceOptions.length
-        ? model.serviceOptions
-        : type.serviceOptions && type.serviceOptions.length
-          ? type.serviceOptions
-          : serviceSource.services.map((item) => item.name);
-
-    return configuredNames.map((name) => {
-      const matchedService = serviceSource.services.find((item) => item.name === name);
-
-      if (matchedService) {
-        return matchedService;
-      }
-
-      const fallbackSources = [
-        model && model.defaultServices ? model.defaultServices : [],
-        make && make.defaultServices ? make.defaultServices : [],
-        type.defaultServices ? type.defaultServices : []
-      ];
-
-      for (const services of fallbackSources) {
-        const fallbackMatch = services.find((item) => item.name === name);
-        if (fallbackMatch) {
-          return fallbackMatch;
-        }
-      }
-
-      return { name, price: null };
-    });
-  }
-
-  function isComputerPath() {
-    return typeSelect.value === "Computer";
-  }
-
-  function getPricingNote(selectedService) {
-    if (!selectedService || !isComputerPath()) {
-      return "";
-    }
-
-    if (selectedService.name === "Diagnostic") {
-      return "Laptop and desktop diagnostics are paid upfront and fully applied to an approved repair.";
-    }
-
-    if (selectedService.priceLabel || typeof selectedService.price !== "number") {
-      return "Call for Pricing";
-    }
-
-    return "If you already paid the $100 computer diagnosis fee, that amount is credited toward this repair total.";
-  }
-
-  function updatePathPreview() {
-    const parts = [
-      typeSelect.value,
-      makeSelect.value,
-      modelSelect.value,
-      subModelSelect.value,
-      serviceSelect.value
-    ].filter(Boolean);
-
-    pathPreview.textContent = parts.length ? parts.join(" > ") : "Choose a device path to see your estimate.";
-  }
-
-  function resetEstimateDisplay() {
-    if (selectionEstimate) {
-      selectionEstimate.hidden = true;
-    }
-
-    if (selectionPrice) {
-      selectionPrice.textContent = "";
-    }
-
-    if (selectionPriceNote) {
-      selectionPriceNote.hidden = true;
-      selectionPriceNote.textContent = "";
-    }
-
-    if (pricingActionNote) {
-      pricingActionNote.textContent = "Select a service to see your estimate.";
-    }
-
-    if (scheduleRepairLink) {
-      scheduleRepairLink.classList.remove("btn-primary");
-      scheduleRepairLink.classList.add("btn-secondary");
-    }
-  }
-
-  function getSelectedModelName() {
-    return [modelSelect.value, subModelSelect.value].filter(Boolean).join(" ");
-  }
-
-  function updateScheduleRepairLink() {
-    if (!scheduleRepairLink) {
-      return;
-    }
-
-    const selectedService = getSelectedService();
-    const parameters = new URLSearchParams();
-
-    if (makeSelect.value) {
-      parameters.set("make", makeSelect.value);
-    }
-
-    if (getSelectedModelName()) {
-      parameters.set("model", getSelectedModelName());
-    }
-
-    if (selectedService && selectedService.name) {
-      parameters.set("service", selectedService.name);
-    }
-
-    const [path, hash = ""] = scheduleRepairHref.split("#");
-    const query = parameters.toString();
-    scheduleRepairLink.href = `${path}${query ? `?${query}` : ""}${hash ? `#${hash}` : ""}`;
-  }
-
-  function updateEstimateState() {
-    updatePathPreview();
-    updateScheduleRepairLink();
-  }
-
-  function getEstimateEventParams(selectedService = getSelectedService()) {
-    return {
-      form_id: "pricing-form",
-      form_name: "pricing_estimator",
-      device_type: typeSelect.value,
-      device_make: makeSelect.value,
-      device_model: getSelectedModelName(),
-      service_name: selectedService && selectedService.name ? selectedService.name : "",
-      estimate_price: selectedService ? formatPrice(selectedService) : ""
+  function createCategory(category, catalog, index) {
+    const entries = catalog.deviceTypes.filter(t => category.types.includes(t.name))
+      .flatMap(type => type.makes.map(make => ({ type, make, label: type.name === 'Controllers' ? `Controller · ${make.name}` : make.name })));
+    const section = document.createElement('section');
+    section.className = 'repair-category';
+    section.innerHTML = `<h2><button type="button" id="${category.id}-toggle" class="category-toggle" aria-expanded="${index === 0}" aria-controls="${category.id}-panel"><span><span class="category-title">${category.title}</span><span class="category-description">${category.description}</span></span><span class="category-chevron" aria-hidden="true">+</span></button></h2>
+      <div id="${category.id}-panel" class="category-panel" role="region" aria-labelledby="${category.id}-toggle" ${index ? 'hidden' : ''}>
+        <form class="repair-form" aria-label="${category.title} estimate">
+          <div class="repair-fields">
+            <label class="repair-field">Brand<select name="brand" aria-label="${category.title}: Brand"></select></label>
+            <label class="repair-field" hidden>Model<select name="model" disabled aria-label="${category.title}: Model"></select></label>
+            <label class="repair-field" hidden>Sub-Model<select name="submodel" disabled aria-label="${category.title}: Sub-Model"></select></label>
+            <label class="repair-field">Service<select name="service" disabled aria-label="${category.title}: Service"></select></label>
+          </div>
+          <div class="estimate-region" role="status" aria-live="polite" aria-atomic="true"><p class="estimate-prompt">Choose your device and service to see an estimate.</p></div>
+        </form>
+        ${category.id === 'phones' ? '<aside class="screen-quality"><h3>Why Screen Quality Matters</h3><p>Not all replacement screens are created equal. When your iPhone originally came with an OLED display, we replace it with OLED—not a cheaper LCD conversion. This helps preserve the display quality, contrast, and power efficiency your phone was designed to deliver.</p></aside>' : ''}
+        <p class="custom-repair">Don’t see your repair? <a href="/contact/">Contact us for an estimate.</a></p>
+      </div>`;
+    host.append(section);
+    const toggle = section.querySelector('button');
+    const panel = section.querySelector('.category-panel');
+    const form = section.querySelector('form');
+    const [brand, model, submodel, service] = form.querySelectorAll('select');
+    const result = section.querySelector('.estimate-region');
+    let deviceList = [], serviceList = [];
+    const entry = () => entries[brand.value];
+    const device = () => deviceList[model.value];
+    const source = () => {
+      const selected = device(), current = entry();
+      if (selected) return selected.source || (selected.model.subModels || [])[submodel.value] || null;
+      return current && !(current.make.models && current.make.models.length) ? current.make : null;
     };
-  }
-
-  function trackEstimateStart() {
-    if (hasStartedEstimate || !typeSelect.value) {
-      return;
+    const clearEstimate = () => { result.textContent = ''; const p = document.createElement('p'); p.className = 'estimate-prompt'; p.textContent = 'Choose your device and service to see an estimate.'; result.append(p); };
+    function loadServices() {
+      serviceList = entry() ? core.services(entry().type, entry().make, device() && device().model, source()) : [];
+      options(service, serviceList.map(s => ({name: s.displayLabel || s.name})), 'Select service');
+      clearEstimate();
     }
-
-    hasStartedEstimate = true;
-    trackEstimateEvent("estimate_start", getEstimateEventParams());
-  }
-
-  function scrollToCompletedEstimate() {
-    if (!selectionEstimate || !scheduleRepairLink) {
-      return;
+    function brandChanged() {
+      deviceList = entry() ? core.devices(entry().make) : [];
+      options(model, deviceList, 'Select model');
+      model.parentElement.hidden = !deviceList.length;
+      options(submodel, [], 'Select sub-model');
+      submodel.parentElement.hidden = true;
+      loadServices();
     }
-
-    window.requestAnimationFrame(() => {
-      const top = selectionEstimate.getBoundingClientRect().top + window.scrollY;
-      const bottom = scheduleRepairLink.getBoundingClientRect().bottom + window.scrollY;
-      const contentHeight = bottom - top;
-      const viewportHeight = window.innerHeight;
-      const targetTop = contentHeight < viewportHeight
-        ? top - ((viewportHeight - contentHeight) / 2)
-        : top - 16;
-      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth";
-
-      window.scrollTo({
-        top: Math.max(0, targetTop),
-        behavior
-      });
+    function reset() {
+      options(brand, entries, 'Select brand');
+      if (entries.length) brand.value = '0';
+      brandChanged();
+    }
+    function render() {
+      clearEstimate();
+      const selected = serviceList[service.value];
+      if (!selected) return;
+      result.textContent = '';
+      const title = document.createElement('h3');
+      const selectedDevice = device();
+      const selectedSubmodel = selectedDevice && (selectedDevice.model.subModels || [])[submodel.value];
+      const deviceName = [selectedDevice && selectedDevice.name, selectedSubmodel && selectedSubmodel.name].filter(Boolean).join(' ') || entry().make.name;
+      title.textContent = `${deviceName} — ${selected.displayLabel || selected.name}`;
+      const amount = document.createElement('p'); amount.className = 'estimate-amount';
+      amount.append('Estimated Price: ');
+      const strong = document.createElement('strong'); strong.textContent = core.price(selected); amount.append(strong);
+      const note = document.createElement('p'); note.className = 'estimate-note';
+      const notes = [];
+      if (selected.verificationRequired) notes.push('Contact the shop to confirm part availability and the current repair offering.');
+      else if (selected.displayType) notes.push(`Quality ${selected.displayType} replacement.`);
+      if (selected.name === 'Battery Replacement' && entry().type.name === 'Phone' && entry().make.name === 'Apple') notes.push('Quality aftermarket battery. Battery health reporting and pairing features depend on the model and component.');
+      if (selected.name === 'Charging Port Replacement' && entry().make.name === 'Apple') notes.push('Normal port assembly replacement. Board-level charging faults require diagnosis and a confirmed quote.');
+      if (selected.name === 'Diagnostic') notes.push('Diagnostic fee applied toward the repair when you proceed.');
+      else if (entry().type.name === 'Computer') notes.push('The $100 computer diagnostic fee is credited toward an approved repair.');
+      notes.push('Parts and labor included in listed repair prices, before applicable tax. Final price confirmed by the shop.');
+      note.textContent = notes.join(' ');
+      const actions = document.createElement('div'); actions.className = 'estimate-actions';
+      // Preserve the contact page’s existing service aliases and hash-driven expansion.
+      const params = new URLSearchParams({ make: entry().make.name, model: deviceName, service: selected.name, device: entry().type.name, estimate: core.price(selected) });
+      const schedule = document.createElement('a'); schedule.className = 'btn-primary'; schedule.textContent = 'Schedule a Repair'; schedule.href = `/contact/?${params}#schedule-repair`;
+      schedule.addEventListener('click', () => track('schedule_repair_click', { location: 'pricing_estimate', service_name: selected.name }));
+      const call = document.createElement('a'); call.className = 'btn-secondary'; call.href = 'tel:+16166063304'; call.textContent = 'Call (616) 606-3304';
+      actions.append(schedule, call); result.append(title, amount, note, actions);
+      track('estimate_viewed', { device_type: entry().type.name, device_model: deviceName, service_name: selected.name, estimate_price: core.price(selected) });
+      if (typeof window.plausible === 'function') window.plausible('EstimateViewed', { props: { path: title.textContent, price: core.price(selected) } });
+    }
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      controllers.forEach(c => { c.toggle.setAttribute('aria-expanded', 'false'); c.panel.hidden = true; c.reset(); });
+      toggle.setAttribute('aria-expanded', String(open)); panel.hidden = !open;
     });
-  }
-
-  function renderEstimate() {
-    const selectedService = getSelectedService();
-    if (!selectedService) {
-      resetEstimateDisplay();
-      updateEstimateState();
-      return;
-    }
-
-    updateEstimateState();
-    if (selectionPrice) {
-      selectionPrice.textContent = formatPrice(selectedService);
-    }
-
-    if (selectionPriceNote) {
-      const priceNote = getPricingNote(selectedService);
-      selectionPriceNote.textContent = priceNote;
-      selectionPriceNote.hidden = !priceNote;
-    }
-
-    if (selectionEstimate) {
-      selectionEstimate.hidden = false;
-    }
-
-    if (pricingActionNote) {
-      pricingActionNote.textContent = "Your estimate is ready. Schedule when you are ready.";
-    }
-
-    if (scheduleRepairLink) {
-      scheduleRepairLink.classList.remove("btn-secondary");
-      scheduleRepairLink.classList.add("btn-primary");
-    }
-
-    trackEstimateEvent("estimate_viewed", getEstimateEventParams(selectedService));
-
-    if (typeof window.plausible === "function") {
-      window.plausible("EstimateViewed", {
-        props: {
-          path: pathPreview.textContent,
-          price: selectedService.priceLabel != null ? selectedService.priceLabel : String(selectedService.price)
-        }
-      });
-    }
-  }
-
-  function onTypeChange() {
-    trackEstimateStart();
-    const type = getSelectedType();
-    setOptions(makeSelect, type && type.makes ? type.makes : [], "Select Make");
-    setModelVisibility(false);
-    setSubModelVisibility(false);
-    resetSelect(modelSelect, "Select Model");
-    resetSelect(subModelSelect, "Select Sub-Model");
-    resetSelect(serviceSelect, "Select Service");
-    resetEstimateDisplay();
-    updateEstimateState();
-  }
-
-  function onMakeChange() {
-    const make = getSelectedMake();
-    const showModel = Boolean(make && make.models && make.models.length);
-
-    setModelVisibility(showModel);
-    setSubModelVisibility(false);
-
-    if (showModel) {
-      setOptions(modelSelect, make.models, "Select Model");
-      resetSelect(subModelSelect, "Select Sub-Model");
-      resetSelect(serviceSelect, "Select Service");
-    } else {
-      resetSelect(modelSelect, "Select Model");
-      resetSelect(subModelSelect, "Select Sub-Model");
-      setOptions(serviceSelect, getAvailableServices(), "Select Service");
-    }
-
-    resetEstimateDisplay();
-    updateEstimateState();
-  }
-
-  function onModelChange() {
-    const model = getSelectedModel();
-    const showSubModel = Boolean(model && model.subModels && model.subModels.length);
-
-    setSubModelVisibility(showSubModel);
-
-    if (showSubModel) {
-      setOptions(subModelSelect, model.subModels, "Select Sub-Model");
-      resetSelect(serviceSelect, "Select Service");
-    } else {
-      resetSelect(subModelSelect, "Select Sub-Model");
-      setOptions(serviceSelect, getAvailableServices(), "Select Service");
-    }
-
-    resetEstimateDisplay();
-    updateEstimateState();
-  }
-
-  function onSubModelChange() {
-    setOptions(serviceSelect, getAvailableServices(), "Select Service");
-    resetEstimateDisplay();
-    updateEstimateState();
-  }
-
-  function onServiceChange() {
-    renderEstimate();
-    if (getSelectedService()) {
-      scrollToCompletedEstimate();
-    }
-  }
-
-  async function loadCatalog() {
-    try {
-      const response = await fetch(catalogUrl, { cache: "no-store" });
-
-      if (!response.ok) {
-        throw new Error("Pricing catalog could not be loaded.");
-      }
-
-      const data = await response.json();
-      catalog = data.deviceTypes || [];
-      setOptions(typeSelect, catalog, "Select Device Type");
-    } catch (error) {
-      pathPreview.textContent = "We could not load pricing right now. Please call for a quote.";
-      resetEstimateDisplay();
-    }
-  }
-
-  if (form) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      renderEstimate();
+    brand.addEventListener('change', brandChanged);
+    model.addEventListener('change', () => {
+      const selected = device();
+      const subs = selected && selected.model.subModels;
+      const show = Boolean(subs && subs.length && !selected.source);
+      options(submodel, show ? subs : [], 'Select sub-model'); submodel.parentElement.hidden = !show;
+      loadServices();
     });
-  }
-
-  if (typeSelect) typeSelect.addEventListener("change", onTypeChange);
-  if (makeSelect) makeSelect.addEventListener("change", onMakeChange);
-  if (modelSelect) modelSelect.addEventListener("change", onModelChange);
-  if (subModelSelect) subModelSelect.addEventListener("change", onSubModelChange);
-  if (serviceSelect) serviceSelect.addEventListener("change", onServiceChange);
-  if (scheduleRepairLink) {
-    scheduleRepairLink.addEventListener("click", () => {
-      const selectedService = getSelectedService();
-
-      trackEstimateEvent("schedule_repair_click", Object.assign({}, getEstimateEventParams(selectedService), {
-        location: "pricing_estimate",
-        link_url: scheduleRepairLink.getAttribute("href") || "",
-        link_text: scheduleRepairLink.textContent.trim(),
-        estimate_completed: Boolean(selectedService)
-      }));
+    submodel.addEventListener('change', loadServices);
+    service.addEventListener('change', render);
+    form.addEventListener('change', () => {
+      if (!hasStartedEstimate) { hasStartedEstimate = true; track('estimate_start', { device_type: entry() && entry().type.name }); }
     });
+    form.addEventListener('submit', event => event.preventDefault());
+    controllers.push({ toggle, panel, reset }); reset();
   }
-
-  resetSelect(makeSelect, "Select Make");
-  resetSelect(modelSelect, "Select Model");
-  resetSelect(subModelSelect, "Select Sub-Model");
-  resetSelect(serviceSelect, "Select Service");
-  setModelVisibility(false);
-  setSubModelVisibility(false);
-  updateEstimateState();
-  loadCatalog();
+  fetch('/data/pricing-catalog.json?v=20261027-1', { cache: 'no-store' }).then(response => {
+    if (!response.ok) throw new Error('Catalog unavailable');
+    return response.json();
+  }).then(catalog => {
+    if (!Array.isArray(catalog.deviceTypes) || !catalog.deviceTypes.length) throw new Error('Invalid catalog');
+    categories.forEach((category, index) => createCategory(category, catalog, index));
+    status.hidden = true;
+  }).catch(() => { host.textContent = ''; status.textContent = 'We could not load pricing right now. Call (616) 606-3304 or contact us for an estimate.'; });
 })();

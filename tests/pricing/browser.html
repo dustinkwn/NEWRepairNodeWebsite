@@ -1,0 +1,92 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Pricing browser checks</title>
+<style>iframe { width: 100%; height: 900px; border: 0 } pre { white-space: pre-wrap }</style>
+<pre id="results">RUNNING</pre><iframe title="Pricing page under test"></iframe>
+<script>
+(async () => {
+ const frame = document.querySelector('iframe');
+ frame.src = new URLSearchParams(location.search).get('page') === 'legacy' ? '/pricing.html' : '/pricing-2/';
+ await new Promise(resolve => frame.addEventListener('load', resolve, { once:true }));
+ const w = frame.contentWindow, d = frame.contentDocument;
+ let count = 0;
+ const assert = (value, message) => { if (!value) throw Error(message); count++; };
+ const wait = async () => { for(let i=0;i<100 && !d.querySelector('.repair-form');i++) await new Promise(r=>setTimeout(r,50)); };
+ try {
+  await wait();
+  const core = w.RepairPricing;
+  const choose = (s, text) => { const o = [...s.options].find(o => o.text === text); assert(o, `Missing option ${text}`); s.value = o.value; s.dispatchEvent(new w.Event('change')); };
+  const form = id => d.querySelector(`#${id}-panel form`);
+  const fields = id => form(id).querySelectorAll('select');
+  const result = id => form(id).querySelector('.estimate-region');
+  const price = id => result(id).querySelector('strong')?.textContent;
+  const open = id => d.getElementById(`${id}-toggle`).click();
+  assert(d.querySelectorAll('.repair-category').length === 4, 'Four categories');
+  assert(d.querySelectorAll('.category-toggle[aria-expanded="true"]').length === 1, 'One category initially open');
+  const [brand,model,sub,service] = fields('phones');
+  assert(brand.selectedOptions[0].text === 'Apple', 'Apple default');
+  assert(model.options[1].text === 'iPhone 17 Pro Max', 'Newest models first');
+  assert(sub.parentElement.hidden, 'No redundant submodel');
+  const cases = [ ['iPhone 13','OLED Screen Replacement','$149'], ['iPhone 13','Battery Replacement','$89'], ['iPhone 14','OLED Screen Replacement','$139'], ['iPhone 15','OLED Screen Replacement','$159'], ['iPhone 16 Pro','OLED Screen Replacement','$199'], ['iPhone 11','LCD Screen Replacement','$89'] ];
+  for(const [device,repair,expected] of cases) {
+   choose(model,device); assert(!price('phones'), 'Model change clears estimate');
+   choose(service,repair); assert(price('phones') === expected, `${device} ${repair} ${expected}`);
+   const url = new URL(result('phones').querySelector('.btn-primary').href);
+   assert(url.pathname === '/contact/' && url.hash === '#schedule-repair', 'Existing contact flow');
+   assert(url.searchParams.get('model') === device && url.searchParams.get('service'), 'Prefilled model and service');
+   assert(url.searchParams.get('estimate') === expected, 'Estimate passed in URL');
+   assert(result('phones').querySelector('.btn-secondary').getAttribute('href') === 'tel:+16166063304', 'Clickable call action');
+  }
+  for(const [device,expected] of [['iPhone 17 Pro Max','$299'],['iPhone 17 Pro','$249'],['iPhone 17','$229'],['iPhone 17e','$160'],['iPhone Air','$379']]) {
+   choose(model,device); choose(service,'OLED Screen Replacement'); assert(price('phones') === expected, `${device} supplied screen price visible`);
+  }
+  choose(service,'Battery Replacement'); assert(price('phones') === 'Contact for current pricing', 'Unconfirmed battery hidden');
+  choose(service,'Charging Port Replacement'); assert(price('phones') === 'Contact for current pricing', 'Unconfirmed port hidden');
+  choose(model,'iPhone 6'); choose(service,'LCD Screen Replacement'); assert(price('phones') === '$69', 'Older supplied screen price visible');
+  const catalog = await (await w.fetch('/data/pricing-catalog.json')).json();
+  for(const phone of catalog.deviceTypes[0].makes[0].models[0].subModels) {
+   choose(model,`iPhone ${phone.name}`);
+   assert([...service.options].filter(o=>/Screen|LCD|OLED/.test(o.text)).length === 1, 'One screen tier');
+   if((phone.services.find(s=>s.name === 'Screen Repair')).displayType === 'OLED') assert(![...service.options].some(o=>/LCD/.test(o.text)), `No LCD conversion for ${phone.name}`);
+  }
+  choose(brand,'Samsung'); choose(model,'Galaxy S23'); choose(service,'Screen Repair'); assert(price('phones') === '$239','Samsung unchanged');
+  choose(brand,'Google'); choose(model,'Pixel 8'); choose(service,'Screen Repair'); assert(price('phones') === '$209','Google unchanged');
+  choose(brand,'Select brand'); assert(!price('phones') && service.disabled && model.parentElement.hidden, 'Cleared brand resets everything');
+  open('tablets'); choose(fields('tablets')[1],'iPad 10/11'); choose(fields('tablets')[3],'Screen Repair'); assert(price('tablets') === '$140','Tablet price');
+  open('computers'); assert(!price('tablets') && !price('phones'), 'Switch category clears old estimates');
+  choose(fields('computers')[1],'Desktop'); choose(fields('computers')[3],'Apple Computer Labor'); assert(price('computers') === '$210','Existing actual service preserved');
+  choose(fields('computers')[3],'Diagnostic'); assert(price('computers') === '$100','Computer diagnostic');
+  choose(fields('computers')[0],'Windows'); choose(fields('computers')[1],'Laptop'); choose(fields('computers')[3],'Battery Replacement'); assert(price('computers') === 'Contact for current pricing','Missing quote stays missing');
+  open('gaming'); choose(fields('gaming')[0],'Nintendo'); choose(fields('gaming')[1],'Switch OLED'); choose(fields('gaming')[3],'Screen Repair'); assert(price('gaming') === '$210','Nintendo actual service visible');
+  choose(fields('gaming')[0],'Microsoft'); choose(fields('gaming')[1],'Xbox Series X'); choose(fields('gaming')[3],'HDMI Port Replacement'); assert(price('gaming') === '$100','Xbox price');
+  choose(fields('gaming')[0],'Sony'); choose(fields('gaming')[1],'PlayStation PS5'); choose(fields('gaming')[3],'Cleaning'); assert(price('gaming') === '$80','PlayStation price');
+  choose(fields('gaming')[0],'Controller · Switch/Joy-Con'); assert(fields('gaming')[1].parentElement.hidden,'Controller needs no model'); choose(fields('gaming')[3],'Stick Replacement'); assert(price('gaming') === '$30','Controller preserved');
+  open('phones'); assert(model.value === '' && service.disabled && !price('phones'), 'Reopened category reset');
+  for(const input of [null,{}, {price:0},{price:-5},{price:null},{price:NaN},{price:149,verificationRequired:true}]) assert(core.price(input) === 'Contact for current pricing','No fabricated price');
+  const type={serviceOptions:['Missing','Diagnostic'],defaultServices:[{name:'Diagnostic',price:45}]};
+  assert(core.services(type,{},null,{services:[]}).length === 1,'Unsupported service omitted');
+  // Exercise genuine submodels separately from flattened single-family devices.
+  const variants = core.devices({models:[{name:'A',subModels:[{name:'Variant',services:[]}]},{name:'B',services:[]}]});
+  assert(variants.find(x=>x.name==='A').source === null,'Genuine variants retained');
+  assert(d.querySelectorAll('h1').length === 1,'One H1');
+  assert(d.querySelector('link[rel="canonical"]').href === 'https://repairnode.com/pricing-2/', 'Original canonical URL retained');
+  assert(d.querySelector('script[src*="googletagmanager.com"]'), 'Existing Google Analytics retained');
+  for(const element of d.querySelectorAll('script[src], link[rel="stylesheet"], img[src]')) {
+   const url = new URL(element.src || element.href, d.baseURI);
+   if(url.origin === location.origin) assert((await fetch(url)).ok, `Shared asset loads: ${url.pathname}`);
+  }
+  for(const toggle of d.querySelectorAll('.category-toggle')) {
+   assert(d.getElementById(toggle.getAttribute('aria-controls')), 'ARIA controls has target');
+   toggle.focus(); assert(d.activeElement === toggle,'Accordion button focusable');
+  }
+  for(const width of [375,768,1280]) {
+   frame.style.width = `${width}px`; await new Promise(r=>setTimeout(r,30));
+   assert(d.documentElement.scrollWidth <= width,`No overflow at ${width}px`);
+   assert(d.querySelector('.pricing-page').getBoundingClientRect().right <= width, `Main content fits ${width}px`);
+   for(const element of d.querySelectorAll('#phones-panel select, .category-toggle, .screen-quality')) {
+    if(element.getBoundingClientRect().width) assert(element.getBoundingClientRect().right <= width, `Control fits ${width}px`);
+   }
+   for(const select of fields('phones')) if(!select.parentElement.hidden) assert(select.getBoundingClientRect().height >= 44,'Touch target');
+  }
+  document.getElementById('results').textContent = `PASS: ${count} browser assertions. Pricing, four categories, resets, links, missing values, ARIA/focus and responsive widths.`;
+ } catch(error) { document.getElementById('results').textContent = `FAIL after ${count} assertions: ${error.stack}`; }
+})();
+</script></html>
