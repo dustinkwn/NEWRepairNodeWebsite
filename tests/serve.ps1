@@ -16,7 +16,7 @@ try {
    $context.Response.StatusCode = 404
    $bytes = [Text.Encoding]::UTF8.GetBytes('Not found')
   } else {
-   $context.Response.ContentType = switch([IO.Path]::GetExtension($path)) { '.js' {'text/javascript; charset=utf-8'} '.json' {'application/json'} '.css' {'text/css'} '.png' {'image/png'} default {'text/html; charset=utf-8'} }
+   $context.Response.ContentType = switch([IO.Path]::GetExtension($path)) { '.js' {'text/javascript; charset=utf-8'} '.json' {'application/json'} '.css' {'text/css'} '.png' {'image/png'} '.svg' {'image/svg+xml'} default {'text/html; charset=utf-8'} }
    $bytes = [IO.File]::ReadAllBytes($path)
   }
   $context.Response.ContentLength64 = $bytes.Length
