@@ -373,7 +373,7 @@
                 {
                   "name": "Air",
                   "services": [
-                    { "name": "Screen Repair", "price": 379, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Screen Repair", "price": 400, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
                     { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
                     { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
@@ -381,7 +381,7 @@
                 {
                   "name": "17",
                   "services": [
-                    { "name": "Screen Repair", "price": 229, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Screen Repair", "price": 250, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
                     { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
                     { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
@@ -397,7 +397,7 @@
                 {
                   "name": "17 Pro",
                   "services": [
-                    { "name": "Screen Repair", "price": 249, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Screen Repair", "price": 250, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
                     { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
                     { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]
@@ -405,7 +405,7 @@
                 {
                   "name": "17 Pro Max",
                   "services": [
-                    { "name": "Screen Repair", "price": 299, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
+                    { "name": "Screen Repair", "price": 300, "displayType": "OLED", "displayLabel": "OLED Screen Replacement" },
                     { "name": "Battery Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true },
                     { "name": "Charging Port Replacement", "price": null, "priceLabel": "Contact for current pricing", "verificationRequired": true }
                   ]

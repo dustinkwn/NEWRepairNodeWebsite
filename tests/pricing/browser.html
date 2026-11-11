@@ -35,7 +35,7 @@
    assert(url.searchParams.get('estimate') === expected, 'Estimate passed in URL');
    assert(result('phones').querySelector('.btn-secondary').getAttribute('href') === 'tel:+16166063304', 'Clickable call action');
   }
-  for(const [device,expected] of [['iPhone 17 Pro Max','$299'],['iPhone 17 Pro','$249'],['iPhone 17','$229'],['iPhone 17e','$160'],['iPhone Air','$379']]) {
+  for(const [device,expected] of [['iPhone 17 Pro Max','$300'],['iPhone 17 Pro','$250'],['iPhone 17','$250'],['iPhone 17e','$160'],['iPhone Air','$400']]) {
    choose(model,device); choose(service,'OLED Screen Replacement'); assert(price('phones') === expected, `${device} supplied screen price visible`);
   }
   choose(service,'Battery Replacement'); assert(price('phones') === 'Contact for current pricing', 'Unconfirmed battery hidden');
