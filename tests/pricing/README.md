@@ -16,7 +16,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tests/pricing/catalog.ps1
 
 The comparison baseline is the original catalog at Git commit `026eac4a65f5c7bae3862010cfb3a780bc30d1ad`. A shallow clone must include that commit to run the preservation checks.
 
-Validation completed: 312 catalog assertions passed, along with 296 headless-Chrome assertions for each of the main and legacy pricing URLs. The repository has no package manifest, build step or configured linter; `git diff --check` also passed.
+Validation completed after the November 11 spreadsheet sync: 335 catalog assertions passed, along with 345 headless-Chrome assertions for each of the main and legacy pricing URLs. The repository has no package manifest, build step or configured linter; `git diff --check` also passed. See [the sync review](sync-2026-11-11.md) for the 22 updated iPhone screen prices, seven added Samsung models, preserved entries and unresolved source conflicts.
 
 Start a local static preview:
 

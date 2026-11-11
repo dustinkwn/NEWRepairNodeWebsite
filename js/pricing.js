@@ -133,7 +133,7 @@
     form.addEventListener('submit', event => event.preventDefault());
     controllers.push({ toggle, panel, reset }); reset();
   }
-  fetch('/data/pricing-catalog.json?v=20261027-1', { cache: 'no-store' }).then(response => {
+  fetch('/data/pricing-catalog.json?v=20261111-1', { cache: 'no-store' }).then(response => {
     if (!response.ok) throw new Error('Catalog unavailable');
     return response.json();
   }).then(catalog => {

@@ -25,7 +25,7 @@
   assert(brand.selectedOptions[0].text === 'Apple', 'Apple default');
   assert(model.options[1].text === 'iPhone 17 Pro Max', 'Newest models first');
   assert(sub.parentElement.hidden, 'No redundant submodel');
-  const cases = [ ['iPhone 13','OLED Screen Replacement','$149'], ['iPhone 13','Battery Replacement','$89'], ['iPhone 14','OLED Screen Replacement','$139'], ['iPhone 15','OLED Screen Replacement','$159'], ['iPhone 16 Pro','OLED Screen Replacement','$199'], ['iPhone 11','LCD Screen Replacement','$89'] ];
+  const cases = [ ['iPhone 13','OLED Screen Replacement','$119'], ['iPhone 13','Battery Replacement','$89'], ['iPhone 14','OLED Screen Replacement','$129'], ['iPhone 15','OLED Screen Replacement','$139'], ['iPhone 16 Pro','OLED Screen Replacement','$179'], ['iPhone 11','LCD Screen Replacement','$89'] ];
   for(const [device,repair,expected] of cases) {
    choose(model,device); assert(!price('phones'), 'Model change clears estimate');
    choose(service,repair); assert(price('phones') === expected, `${device} ${repair} ${expected}`);
@@ -48,6 +48,11 @@
    if((phone.services.find(s=>s.name === 'Screen Repair')).displayType === 'OLED') assert(![...service.options].some(o=>/LCD/.test(o.text)), `No LCD conversion for ${phone.name}`);
   }
   choose(brand,'Samsung'); choose(model,'Galaxy S23'); choose(service,'Screen Repair'); assert(price('phones') === '$239','Samsung unchanged');
+  for(const [device,screenPrice] of [['Galaxy S10','$250'],['Galaxy S10 5G','$300'],['Galaxy S10 Plus','$350'],['Galaxy S10e','$200'],['Galaxy S10 Lite','$260'],['Galaxy S20','$300'],['Galaxy S20 Plus','$310']]) {
+   choose(model,device); choose(service,'Screen Repair'); assert(price('phones') === screenPrice, `${device} spreadsheet screen price`);
+   choose(service,'Battery Replacement'); assert(price('phones') === '$100',`${device} spreadsheet battery price`);
+   choose(service,'Charging Port Replacement'); assert(price('phones') === '$100',`${device} spreadsheet charging port price`);
+  }
   choose(brand,'Google'); choose(model,'Pixel 8'); choose(service,'Screen Repair'); assert(price('phones') === '$209','Google unchanged');
   choose(brand,'Select brand'); assert(!price('phones') && service.disabled && model.parentElement.hidden, 'Cleared brand resets everything');
   open('tablets'); choose(fields('tablets')[1],'iPad 10/11'); choose(fields('tablets')[3],'Screen Repair'); assert(price('tablets') === '$140','Tablet price');
